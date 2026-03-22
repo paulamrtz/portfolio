@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paula Martinez – Data Science Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --slate-950: #020617;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-400: #94a3b8;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --blue-600: #2563eb;
+      --blue-500: #3b82f6;
+      --blue-400: #60a5fa;
+      --blue-300: #93c5fd;
+      --cyan-400: #22d3ee;
+      --cyan-300: #67e8f9;
+      --emerald-400: #34d399;
+      --emerald-300: #6ee7b7;
+      --yellow-300: #fde047;
+      --purple-300: #d8b4fe;
+      --orange-300: #fdba74;
+      --red-500: #ef4444;
+      --yellow-500: #eab308;
+      --green-500: #22c55e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--slate-900);
+      color: var(--slate-200);
+      min-height: 100vh;
+    }
+
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 50;
+      background: rgba(15,23,42,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--slate-800);
+    }
+    .nav-inner {
+      max-width: 1152px; margin: 0 auto;
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { font-weight: 800; font-size: 1.25rem; color: #fff; letter-spacing: -0.05em; }
+    .nav-logo span { color: var(--blue-500); }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500;
+      color: var(--slate-200); text-decoration: none;
+      text-transform: capitalize; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-400); }
+
+    main { padding-top: 64px; }
+
+    #inicio {
+      min-height: 90vh; display: flex; align-items: center;
+      background: linear-gradient(to bottom, var(--slate-900), var(--slate-800));
+    }
+    .hero-inner {
+      max-width: 1152px; margin: 0 auto;
+      padding: 5rem 2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center;
+      padding: 0.25rem 0.75rem; border-radius: 9999px;
+      background: rgba(59,130,246,0.1); color: var(--blue-400);
+      font-size: 0.875rem; font-weight: 500; margin-bottom: 1.5rem;
+      border: 1px solid rgba(59,130,246,0.2);
+    }
+    .badge-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--blue-500); margin-right: 0.5rem;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+
+    h1.hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900; color: #fff;
+      letter-spacing: -0.04em; line-height: 1.05;
+      margin-bottom: 1.25rem;
+    }
+    .gradient {
+      background: linear-gradient(to right, var(--blue-400), var(--cyan-300));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle { font-size: 1.5rem; font-weight: 500; color: var(--slate-400); margin-bottom: 1.5rem; }
+    .hero-desc { font-size: 1.05rem; color: var(--slate-400); margin-bottom: 2rem; max-width: 36rem; line-height: 1.75; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--blue-600); color: #fff;
+      padding: 0.75rem 1.5rem; border-radius: 0.5rem;
+      font-weight: 600; font-size: 0.9rem; border: none;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-secondary {
+      background: var(--slate-800); color: #fff;
+      padding: 0.75rem 1.5rem; border-radius: 0.5rem;
+      font-weight: 600; font-size: 0.9rem;
+      border: 1px solid var(--slate-700);
+      text-decoration: none; display: inline-flex; align-items: center;
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: var(--slate-700); }
+
+    .hero-code-wrap { position: relative; display: flex; justify-content: center; }
+    .hero-glow {
+      position: absolute; width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(37,99,235,0.35), rgba(34,211,238,0.1));
+      border-radius: 50%; filter: blur(60px);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+    }
+    .code-block {
+      position: relative; z-index: 1;
+      background: rgba(30,41,59,0.7);
+      border: 1px solid var(--slate-700); border-radius: 1rem;
+      padding: 1.5rem; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem; color: var(--blue-300);
+      backdrop-filter: blur(8px); width: 100%; max-width: 420px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+    }
+    .code-dots { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-r { background: var(--red-500); }
+    .dot-y { background: var(--yellow-500); }
+    .dot-g { background: var(--green-500); }
+    .kw { color: #34d399; }
+    .str { color: var(--orange-300); }
+    .cm { color: var(--slate-500); }
+    .res { color: #fff; }
+    .ind { padding-left: 1.5rem; }
+
+    section { padding: 6rem 0; }
+    .section-inner { max-width: 1152px; margin: 0 auto; padding: 0 2rem; }
+    .section-inner-sm { max-width: 56rem; margin: 0 auto; padding: 0 2rem; }
+
+    h2.stitle {
+      font-size: 1.875rem; font-weight: 700; color: #fff;
+      margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    h2.stitle svg { color: var(--blue-500); flex-shrink: 0; }
+
+    #sobre-mi { background: var(--slate-900); }
+    .about-card {
+      background: rgba(30,41,59,0.5); border: 1px solid var(--slate-700);
+      border-radius: 1rem; padding: 2rem;
+    }
+    .about-card p { font-size: 1.05rem; color: var(--slate-300); line-height: 1.8; }
+    .about-card p+p { margin-top: 1.25rem; }
+
+    #proyectos { background: var(--slate-800); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+    .pcard {
+      background: var(--slate-900); border: 1px solid var(--slate-700);
+      border-radius: 0.75rem; overflow: hidden; transition: border-color 0.2s;
+    }
+    .pcard:nth-child(1):hover { border-color: rgba(59,130,246,0.5); }
+    .pcard:nth-child(2):hover { border-color: rgba(34,211,238,0.5); }
+    .pcard:nth-child(3):hover { border-color: rgba(52,211,153,0.5); }
+    .pcard-icon {
+      height: 12rem; background: var(--slate-800);
+      display: flex; align-items: center; justify-content: center;
+      border-bottom: 1px solid var(--slate-700);
+    }
+    .pcard-icon svg { width: 4rem; height: 4rem; opacity: 0.25; transition: opacity 0.2s, color 0.2s; }
+    .pcard:hover .pcard-icon svg { opacity: 1; }
+    .pcard:nth-child(1) .pcard-icon svg { color: var(--blue-400); }
+    .pcard:nth-child(2) .pcard-icon svg { color: var(--cyan-400); }
+    .pcard:nth-child(3) .pcard-icon svg { color: var(--emerald-400); }
+    .pcard-body { padding: 1.5rem; }
+    .pcard-body h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    .pcard-body p { font-size: 0.875rem; color: var(--slate-400); line-height: 1.65; margin-bottom: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag { padding: 0.2rem 0.6rem; font-size: 0.75rem; font-weight: 500; border-radius: 0.25rem; }
+    .t-blue { background: rgba(30,58,138,0.3); color: #93c5fd; }
+    .t-yellow { background: rgba(120,85,0,0.3); color: var(--yellow-300); }
+    .t-slate { background: var(--slate-800); color: var(--slate-300); }
+    .t-gold { background: rgba(161,98,7,0.3); color: #fcd34d; }
+    .t-purple { background: rgba(88,28,135,0.3); color: var(--purple-300); }
+    .t-emerald { background: rgba(6,78,59,0.3); color: var(--emerald-300); }
+    .t-green { background: rgba(20,83,45,0.3); color: #86efac; }
+
+    #experiencia { background: var(--slate-900); }
+    .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+
+    .timeline { position: relative; }
+    .timeline::before {
+      content:''; position: absolute; left: 1.25rem; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--slate-700), transparent);
+    }
+    .ti { display: flex; gap: 1.25rem; margin-bottom: 2rem; position: relative; }
+    .ti-dot {
+      flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 50%;
+      background: var(--slate-800); border: 1px solid var(--slate-700);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue-400); position: relative; z-index: 1;
+      transition: border-color 0.2s;
+    }
+    .ti:hover .ti-dot { border-color: var(--blue-500); }
+    .ti-content {
+      flex: 1; background: rgba(30,41,59,0.5);
+      border: 1px solid var(--slate-700); border-radius: 0.75rem; padding: 1.25rem;
+    }
+    .ti-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem; }
+    .ti-company { font-weight: 700; color: #fff; font-size: 0.95rem; }
+    .ti-date { font-family: 'JetBrains Mono',monospace; font-size: 0.7rem; color: var(--blue-400); white-space: nowrap; }
+    .ti-role { font-size: 0.875rem; font-weight: 500; color: var(--slate-300); margin-bottom: 0.5rem; }
+    .ti-content ul { padding-left: 1.25rem; }
+    .ti-content li { font-size: 0.875rem; color: var(--slate-400); margin-bottom: 0.2rem; }
+
+    .edu-card { border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1rem; }
+    .edu-hi { border: 1px solid rgba(59,130,246,0.3); background: rgba(30,58,138,0.1); }
+    .edu-nm { border: 1px solid var(--slate-700); background: rgba(30,41,59,0.5); }
+    .edu-hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+    .edu-card h3 { font-size: 1.05rem; font-weight: 700; color: #fff; }
+    .badge-curr { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--blue-400); background:rgba(30,58,138,0.3); padding:0.2rem 0.5rem; border-radius:0.25rem; white-space:nowrap; }
+    .badge-yr { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--slate-400); background:var(--slate-800); padding:0.2rem 0.5rem; border-radius:0.25rem; }
+    .edu-school { font-size:0.875rem; color:var(--slate-300); margin-bottom:0.25rem; }
+    .edu-award { font-size:0.875rem; color:var(--blue-300); font-style:italic; }
+    .edu-desc { font-size:0.875rem; color:var(--slate-400); }
+
+    .certs-ttl { font-size:1.15rem; font-weight:700; color:#fff; margin:2rem 0 1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--slate-700); }
+    .cert-list { list-style:none; display:flex; flex-direction:column; gap:0.75rem; }
+    .cert-item { display:flex; align-items:flex-start; gap:0.75rem; }
+    .cert-dot { width:6px; height:6px; border-radius:50%; background:var(--blue-500); flex-shrink:0; margin-top:5px; }
+    .cert-name { font-size:0.875rem; font-weight:500; color:var(--slate-200); }
+    .cert-org { font-size:0.75rem; color:var(--slate-500); }
+
+    #habilidades { background: var(--slate-800); }
+    .skills-title { text-align:center; display:block; justify-content:center; margin-bottom:3rem; }
+    .skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+    .skill-card { background:var(--slate-900); border:1px solid var(--slate-700); border-radius:1rem; padding:2rem; text-align:center; }
+    .skill-card svg { width:2.5rem; height:2.5rem; margin:0 auto 1rem; display:block; }
+    .sc-blue { color:var(--blue-500); }
+    .sc-cyan { color:var(--cyan-400); }
+    .sc-emerald { color:var(--emerald-400); }
+    .skill-card h3 { font-size:1rem; font-weight:700; color:#fff; margin-bottom:1.25rem; }
+    .skill-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:0.5rem; }
+    .st { padding:0.35rem 0.75rem; font-size:0.875rem; border-radius:0.5rem; border:1px solid; }
+    .st-blue { background:rgba(30,58,138,0.2); border-color:rgba(59,130,246,0.2); color:#93c5fd; }
+    .st-cyan { background:rgba(8,145,178,0.15); border-color:rgba(34,211,238,0.2); color:var(--cyan-300); }
+    .st-em { background:rgba(6,78,59,0.2); border-color:rgba(52,211,153,0.2); color:var(--emerald-300); }
+
+    footer { background:var(--slate-950); border-top:1px solid var(--slate-800); padding:3rem 0; }
+    .footer-inner { max-width:1152px; margin:0 auto; padding:0 2rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center; }
+    .footer-cta h2 { font-size:1.5rem; font-weight:700; color:#fff; margin-bottom:1rem; }
+    .footer-cta p { font-size:0.95rem; color:var(--slate-400); margin-bottom:1.5rem; max-width:30rem; }
+    .contact-links { display:flex; flex-direction:column; gap:0.75rem; }
+    .clink { display:flex; align-items:center; gap:0.75rem; color:var(--slate-300); text-decoration:none; font-size:0.95rem; transition:color 0.2s; }
+    .clink:hover { color:var(--blue-400); }
+    .clink svg, .cstatic svg { width:1.25rem; height:1.25rem; flex-shrink:0; }
+    .cstatic { display:flex; align-items:center; gap:0.75rem; color:var(--slate-400); font-size:0.95rem; }
+    .social-btns { display:flex; gap:1rem; }
+    .soc-btn { width:3rem; height:3rem; border-radius:50%; background:var(--slate-900); border:1px solid var(--slate-800); display:flex; align-items:center; justify-content:center; color:var(--slate-400); text-decoration:none; font-size:0.8rem; font-weight:700; transition:border-color 0.2s,color 0.2s; }
+    .soc-btn:hover { border-color:var(--blue-500); color:var(--blue-400); }
+    .footer-copy { margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(51,65,85,0.5); text-align:center; font-size:0.875rem; color:var(--slate-500); }
+
+    @media(max-width:900px) {
+      .hero-inner { grid-template-columns:1fr; }
+      .hero-code-wrap { display:none; }
+      .projects-grid { grid-template-columns:1fr; }
+      .exp-grid { grid-template-columns:1fr; }
+      .skills-grid { grid-template-columns:1fr; }
+      .footer-inner { grid-template-columns:1fr; }
+    }
+    @media(max-width:640px) { .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">PM<span>.</span></div>
+    <div class="nav-links">
+      <a href="#inicio">inicio</a>
+      <a href="#sobre-mi">sobre mi</a>
+      <a href="#proyectos">proyectos</a>
+      <a href="#experiencia">experiencia</a>
+      <a href="#habilidades">habilidades</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<section id="inicio">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span class="badge-dot"></span>Becada por Excelencia Académica</div>
+      <h1 class="hero-title">Paula <span class="gradient">Martinez</span></h1>
+      <p class="hero-subtitle">Data Science Engineering Student</p>
+      <p class="hero-desc">Especializada en extraer, procesar y transformar datos en valor estratégico. Combino mi base técnica en infraestructura con Python y SQL para resolver problemas complejos y optimizar la toma de decisiones.</p>
+      <div class="hero-btns">
+        <a href="#proyectos" class="btn-primary">Ver Proyectos <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></a>
+        <a href="#contacto" class="btn-secondary">Contactar</a>
+      </div>
+    </div>
+    <div class="hero-code-wrap">
+      <div class="hero-glow"></div>
+      <div class="code-block">
+        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <p>~ <span class="kw">SELECT</span> * <span class="kw">FROM</span> talent</p>
+        <p class="ind"><span class="kw">WHERE</span> skills <span class="kw">IN</span> ('SQL', 'Python', 'Power BI')</p>
+        <p class="ind"><span class="kw">AND</span> drive = <span class="str">'100%'</span>;</p>
+        <br>
+        <p class="cm">/* Ejecutando consulta... */</p>
+        <p class="res" style="margin-top:0.5rem">1 fila devuelta: Paula Martinez.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre-mi">
+  <div class="section-inner-sm">
+    <h2 class="stitle">
+      <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      Sobre Mí
+    </h2>
+    <div class="about-card">
+      <p>Tengo 18 años y soy estudiante de Ingeniería en Ciencia de Datos en la Universidad Domínico Americano (UNICDA), donde fui galardonada con una beca del 100% por excelencia académica.</p>
+      <p>Mi trayectoria comenzó en el soporte técnico y la infraestructura de redes, lo que me dio una comprensión profunda de cómo fluye la información. Actualmente, enfoco mi carrera en la <strong>extracción de datos (SQL)</strong>, la <strong>automatización (Python)</strong> y el <strong>análisis visual (Power BI)</strong>. Me destaco por mi rápida curva de aprendizaje, mi capacidad para trabajar bajo presión y mi interés en aplicar prácticas de ciberseguridad a las bases de datos institucionales.</p>
+    </div>
+  </div>
+</section>
+
+<section id="proyectos">
+  <div class="section-inner">
+    <h2 class="stitle">
+      <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      Proyectos Destacados
+    </h2>
+    <div class="projects-grid">
+      <div class="pcard">
+        <div class="pcard-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+        </div>
+        <div class="pcard-body">
+          <h3>ETL & Extracción de Datos Gubernamentales</h3>
+          <p>Desarrollo de scripts en Python y consultas complejas en SQL Server (SSMS) para la extracción, limpieza y análisis de datos de infraestructura, optimizando la resolución de incidentes internos.</p>
+          <div class="tags"><span class="tag t-blue">SQL Server</span><span class="tag t-yellow">Python</span><span class="tag t-slate">Data Cleaning</span></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+        </div>
+        <div class="pcard-body">
+          <h3>Dashboard de Inteligencia y Ciberseguridad</h3>
+          <p>Panel interactivo desarrollado en Power BI para monitorizar métricas de seguridad de la información. Integra conceptos de la ISO 27001 para visualizar vulnerabilidades y rendimiento de redes.</p>
+          <div class="tags"><span class="tag t-gold">Power BI</span><span class="tag t-purple">DAX</span><span class="tag t-slate">Análisis Visual</span></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9"/></svg>
+        </div>
+        <div class="pcard-body">
+          <h3>Auditoría y Gestión de Redes</h3>
+          <p>Aplicación de conocimientos de CCNA y Ethical Hacking para el levantamiento de topologías de red, mantenimiento de infraestructura tecnológica y documentación técnica detallada en MS Excel.</p>
+          <div class="tags"><span class="tag t-emerald">CCNA</span><span class="tag t-green">Ciberseguridad</span><span class="tag t-slate">Excel Avanzado</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experiencia">
+  <div class="section-inner">
+    <div class="exp-grid">
+      <div>
+        <h2 class="stitle">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+          Experiencia Profesional
+        </h2>
+        <div class="timeline">
+          <div class="ti">
+            <div class="ti-dot"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
+            <div class="ti-content">
+              <div class="ti-header"><span class="ti-company">Antillean Construction Corp.</span><span class="ti-date">Jun 25 – Sep 25</span></div>
+              <div class="ti-role">Asistente de Soporte</div>
+              <ul><li>Gestión y levantamiento de datos civiles.</li><li>Organización de bases de datos tabulares en Excel.</li></ul>
+            </div>
+          </div>
+          <div class="ti">
+            <div class="ti-dot"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg></div>
+            <div class="ti-content">
+              <div class="ti-header"><span class="ti-company">Cámara de Diputados</span><span class="ti-date">Ago 24 – Jun 25</span></div>
+              <div class="ti-role">Soporte Técnico / Analista Jr</div>
+              <ul><li>Extracción y análisis de bases de datos (SQL SSMS, Python).</li><li>Resolución de incidentes y mantenimiento de redes.</li></ul>
+            </div>
+          </div>
+          <div class="ti">
+            <div class="ti-dot"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
+            <div class="ti-content">
+              <div class="ti-header"><span class="ti-company">Senado de la República</span><span class="ti-date">Jun 24 – Ago 24</span></div>
+              <div class="ti-role">Auxiliar Administrativo</div>
+              <ul><li>Documentación y archivado cronológico de datos.</li><li>Gestión integral de correspondencia.</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="stitle">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Educación
+        </h2>
+        <div class="edu-card edu-hi">
+          <div class="edu-hdr"><h3>Ingeniería en Ciencia de Datos</h3><span class="badge-curr">Actualidad</span></div>
+          <p class="edu-school">Universidad Domínico Americano (UNICDA)</p>
+          <p class="edu-award">★ Becada en honor a la excelencia (UNICDA Excellence 100%)</p>
+        </div>
+        <div class="edu-card edu-nm">
+          <div class="edu-hdr"><h3>Técnico Profesional: Desarrollo Informático</h3><span class="badge-yr">2022 – 2025</span></div>
+          <p class="edu-desc">Desarrollo y Gestión de Aplicaciones Informáticas. Dominio de C#, Python, SQL y Web.</p>
+        </div>
+        <p class="certs-ttl">Certificaciones Clave</p>
+        <ul class="cert-list">
+          <li class="cert-item"><div class="cert-dot"></div><div><p class="cert-name">Manejo de Power BI e IA</p><p class="cert-org">Daxus (2025)</p></div></li>
+          <li class="cert-item"><div class="cert-dot"></div><div><p class="cert-name">Ciberseguridad y Ethical Hacking</p><p class="cert-org">Hacker Mentor (2025)</p></div></li>
+          <li class="cert-item"><div class="cert-dot"></div><div><p class="cert-name">Seguridad de la Información ISO 27001</p><p class="cert-org">Seguridad Cero (2025)</p></div></li>
+          <li class="cert-item"><div class="cert-dot"></div><div><p class="cert-name">Redes y Configuración Inicial (CCNA)</p><p class="cert-org">2025</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="habilidades">
+  <div class="section-inner">
+    <h2 class="stitle skills-title">Stack Tecnológico</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <svg class="sc-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+        <h3>Datos & Análisis</h3>
+        <div class="skill-tags"><span class="st st-blue">SQL Server (SSMS)</span><span class="st st-blue">Python</span><span class="st st-blue">Power BI</span><span class="st st-blue">Excel Avanzado</span><span class="st st-blue">Creación de Consultas</span></div>
+      </div>
+      <div class="skill-card">
+        <svg class="sc-cyan" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <h3>Desarrollo</h3>
+        <div class="skill-tags"><span class="st st-cyan">C#</span><span class="st st-cyan">C++</span><span class="st st-cyan">Python</span><span class="st st-cyan">HTML/CSS</span><span class="st st-cyan">JavaScript</span><span class="st st-cyan">PHP</span></div>
+      </div>
+      <div class="skill-card">
+        <svg class="sc-emerald" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9"/></svg>
+        <h3>Infraestructura & Seguridad</h3>
+        <div class="skill-tags"><span class="st st-em">Redes Básicas</span><span class="st st-em">CCNA</span><span class="st st-em">Ciberseguridad</span><span class="st st-em">ISO 27001</span><span class="st st-em">Hardware</span><span class="st st-em">Office 365</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer id="contacto">
+  <div class="footer-inner">
+    <div class="footer-cta">
+      <h2>¿Hablamos de datos?</h2>
+      <p>Estoy abierta a oportunidades como Analista de Datos Jr., Pasante de Ingeniería de Datos o roles en soporte TI.</p>
+      <div class="contact-links">
+        <a href="mailto:martinezpaula0728@gmail.com" class="clink">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          martinezpaula0728@gmail.com
+        </a>
+        <a href="tel:8299903179" class="clink">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 012 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+          (829)-990-3179
+        </a>
+        <div class="cstatic">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Santo Domingo, Distrito Nacional
+        </div>
+      </div>
+    </div>
+    <div class="social-btns">
+      <a href="#" class="soc-btn">IN</a>
+      <a href="#" class="soc-btn">GH</a>
+    </div>
+  </div>
+  <div class="footer-copy">© <script>document.write(new Date().getFullYear())</script> Paula Martinez. Data Science Portfolio.</div>
+</footer>
+
+</body>
+</html>
