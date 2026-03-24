@@ -1,515 +1,537 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Paula Martinez – Data Science Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+import React, { useState, useEffect } from 'react';
+import { 
+  Briefcase, 
+  GraduationCap, 
+  Mail, 
+  Phone, 
+  MapPin, 
+  ChevronRight,
+  Terminal,
+  Github
+} from 'lucide-react';
 
-    :root {
-      --slate-950: #020617;
-      --slate-900: #0f172a;
-      --slate-800: #1e293b;
-      --slate-700: #334155;
-      --slate-600: #475569;
-      --slate-500: #64748b;
-      --slate-400: #94a3b8;
-      --slate-300: #cbd5e1;
-      --slate-200: #e2e8f0;
-      --blue-600: #2563eb;
-      --blue-500: #3b82f6;
-      --blue-400: #60a5fa;
-      --blue-300: #93c5fd;
-      --cyan-400: #22d3ee;
-      --cyan-300: #67e8f9;
-      --emerald-400: #34d399;
-      --emerald-300: #6ee7b7;
-      --yellow-300: #fde047;
-      --purple-300: #d8b4fe;
-      --orange-300: #fdba74;
-      --red-500: #ef4444;
-      --yellow-500: #eab308;
-      --green-500: #22c55e;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--slate-900);
-      color: var(--slate-200);
-      min-height: 100vh;
-    }
-
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 50;
-      background: rgba(15,23,42,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--slate-800);
-    }
-    .nav-inner {
-      max-width: 1152px; margin: 0 auto;
-      padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .nav-logo { font-weight: 800; font-size: 1.25rem; color: #fff; letter-spacing: -0.05em; }
-    .nav-logo span { color: var(--blue-500); }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a {
-      font-size: 0.875rem; font-weight: 500;
-      color: var(--slate-200); text-decoration: none;
-      text-transform: capitalize; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--blue-400); }
-
-    main { padding-top: 64px; }
-
-    #inicio {
-      min-height: 90vh; display: flex; align-items: center;
-      background: linear-gradient(to bottom, var(--slate-900), var(--slate-800));
-    }
-    .hero-inner {
-      max-width: 1152px; margin: 0 auto;
-      padding: 5rem 2rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center;
-      padding: 0.25rem 0.75rem; border-radius: 9999px;
-      background: rgba(59,130,246,0.1); color: var(--blue-400);
-      font-size: 0.875rem; font-weight: 500; margin-bottom: 1.5rem;
-      border: 1px solid rgba(59,130,246,0.2);
-    }
-    .badge-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--blue-500); margin-right: 0.5rem;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
-
-    h1.hero-title {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 900; color: #fff;
-      letter-spacing: -0.04em; line-height: 1.05;
-      margin-bottom: 1.25rem;
-    }
-    .gradient {
-      background: linear-gradient(to right, var(--blue-400), var(--cyan-300));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero-subtitle { font-size: 1.5rem; font-weight: 500; color: var(--slate-400); margin-bottom: 1.5rem; }
-    .hero-desc { font-size: 1.05rem; color: var(--slate-400); margin-bottom: 2rem; max-width: 36rem; line-height: 1.75; }
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    .btn-primary {
-      background: var(--blue-600); color: #fff;
-      padding: 0.75rem 1.5rem; border-radius: 0.5rem;
-      font-weight: 600; font-size: 0.9rem; border: none;
-      cursor: pointer; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      transition: background 0.2s;
-    }
-    .btn-primary:hover { background: #1d4ed8; }
-    .btn-secondary {
-      background: var(--slate-800); color: #fff;
-      padding: 0.75rem 1.5rem; border-radius: 0.5rem;
-      font-weight: 600; font-size: 0.9rem;
-      border: 1px solid var(--slate-700);
-      text-decoration: none; display: inline-flex; align-items: center;
-      transition: background 0.2s;
-    }
-    .btn-secondary:hover { background: var(--slate-700); }
-
-    .hero-code-wrap { position: relative; display: flex; justify-content: center; }
-    .hero-glow {
-      position: absolute; width: 320px; height: 320px;
-      background: radial-gradient(circle, rgba(37,99,235,0.35), rgba(34,211,238,0.1));
-      border-radius: 50%; filter: blur(60px);
-      top: 50%; left: 50%; transform: translate(-50%,-50%);
-    }
-    .code-block {
-      position: relative; z-index: 1;
-      background: rgba(30,41,59,0.7);
-      border: 1px solid var(--slate-700); border-radius: 1rem;
-      padding: 1.5rem; font-family: 'JetBrains Mono', monospace;
-      font-size: 0.875rem; color: var(--blue-300);
-      backdrop-filter: blur(8px); width: 100%; max-width: 420px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-    }
-    .code-dots { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .dot-r { background: var(--red-500); }
-    .dot-y { background: var(--yellow-500); }
-    .dot-g { background: var(--green-500); }
-    .kw { color: #34d399; }
-    .str { color: var(--orange-300); }
-    .cm { color: var(--slate-500); }
-    .res { color: #fff; }
-    .ind { padding-left: 1.5rem; }
-
-    section { padding: 6rem 0; }
-    .section-inner { max-width: 1152px; margin: 0 auto; padding: 0 2rem; }
-    .section-inner-sm { max-width: 56rem; margin: 0 auto; padding: 0 2rem; }
-
-    h2.stitle {
-      font-size: 1.875rem; font-weight: 700; color: #fff;
-      margin-bottom: 2rem;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    h2.stitle svg { color: var(--blue-500); flex-shrink: 0; }
-
-    #sobre-mi { background: var(--slate-900); }
-    .about-card {
-      background: rgba(30,41,59,0.5); border: 1px solid var(--slate-700);
-      border-radius: 1rem; padding: 2rem;
-    }
-    .about-card p { font-size: 1.05rem; color: var(--slate-300); line-height: 1.8; }
-    .about-card p+p { margin-top: 1.25rem; }
-
-    #proyectos { background: var(--slate-800); }
-    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
-    .pcard {
-      background: var(--slate-900); border: 1px solid var(--slate-700);
-      border-radius: 0.75rem; overflow: hidden; transition: border-color 0.2s;
-    }
-    .pcard:nth-child(1):hover { border-color: rgba(59,130,246,0.5); }
-    .pcard:nth-child(2):hover { border-color: rgba(34,211,238,0.5); }
-    .pcard:nth-child(3):hover { border-color: rgba(52,211,153,0.5); }
-    .pcard-icon {
-      height: 12rem; background: var(--slate-800);
-      display: flex; align-items: center; justify-content: center;
-      border-bottom: 1px solid var(--slate-700);
-    }
-    .pcard-icon svg { width: 4rem; height: 4rem; opacity: 0.25; transition: opacity 0.2s, color 0.2s; }
-    .pcard:hover .pcard-icon svg { opacity: 1; }
-    .pcard:nth-child(1) .pcard-icon svg { color: var(--blue-400); }
-    .pcard:nth-child(2) .pcard-icon svg { color: var(--cyan-400); }
-    .pcard:nth-child(3) .pcard-icon svg { color: var(--emerald-400); }
-    .pcard-body { padding: 1.5rem; }
-    .pcard-body h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
-    .pcard-body p { font-size: 0.875rem; color: var(--slate-400); line-height: 1.65; margin-bottom: 1rem; }
-    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .tag { padding: 0.2rem 0.6rem; font-size: 0.75rem; font-weight: 500; border-radius: 0.25rem; }
-    .t-blue { background: rgba(30,58,138,0.3); color: #93c5fd; }
-    .t-yellow { background: rgba(120,85,0,0.3); color: var(--yellow-300); }
-    .t-slate { background: var(--slate-800); color: var(--slate-300); }
-    .t-gold { background: rgba(161,98,7,0.3); color: #fcd34d; }
-    .t-purple { background: rgba(88,28,135,0.3); color: var(--purple-300); }
-    .t-emerald { background: rgba(6,78,59,0.3); color: var(--emerald-300); }
-    .t-green { background: rgba(20,83,45,0.3); color: #86efac; }
-
-    #experiencia { background: var(--slate-900); }
-    .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-
-    .timeline { position: relative; }
-    .timeline::before {
-      content:''; position: absolute; left: 1.25rem; top: 0; bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, transparent, var(--slate-700), transparent);
-    }
-    .ti { display: flex; gap: 1.25rem; margin-bottom: 2rem; position: relative; }
-    .ti-dot {
-      flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 50%;
-      background: var(--slate-800); border: 1px solid var(--slate-700);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--blue-400); position: relative; z-index: 1;
-      transition: border-color 0.2s;
-    }
-    .ti:hover .ti-dot { border-color: var(--blue-500); }
-    .ti-content {
-      flex: 1; background: rgba(30,41,59,0.5);
-      border: 1px solid var(--slate-700); border-radius: 0.75rem; padding: 1.25rem;
-    }
-    .ti-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem; }
-    .ti-company { font-weight: 700; color: #fff; font-size: 0.95rem; }
-    .ti-date { font-family: 'JetBrains Mono',monospace; font-size: 0.7rem; color: var(--blue-400); white-space: nowrap; }
-    .ti-role { font-size: 0.875rem; font-weight: 500; color: var(--slate-300); margin-bottom: 0.5rem; }
-    .ti-content ul { padding-left: 1.25rem; }
-    .ti-content li { font-size: 0.875rem; color: var(--slate-400); margin-bottom: 0.2rem; }
-
-    .edu-card { border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1rem; }
-    .edu-hi { border: 1px solid rgba(59,130,246,0.3); background: rgba(30,58,138,0.1); }
-    .edu-nm { border: 1px solid var(--slate-700); background: rgba(30,41,59,0.5); }
-    .edu-hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
-    .edu-card h3 { font-size: 1.05rem; font-weight: 700; color: #fff; }
-    .badge-curr { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--blue-400); background:rgba(30,58,138,0.3); padding:0.2rem 0.5rem; border-radius:0.25rem; white-space:nowrap; }
-    .badge-yr { font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--slate-400); background:var(--slate-800); padding:0.2rem 0.5rem; border-radius:0.25rem; }
-    .edu-school { font-size:0.875rem; color:var(--slate-300); margin-bottom:0.25rem; }
-    .edu-award { font-size:0.875rem; color:var(--blue-300); font-style:italic; }
-    .edu-desc { font-size:0.875rem; color:var(--slate-400); }
-
-    .certs-ttl { font-size:1.15rem; font-weight:700; color:#fff; margin:2rem 0 1rem; padding-bottom:0.5rem; border-bottom:1px solid var(--slate-700); }
-    .cert-list { list-style:none; display:flex; flex-direction:column; gap:0.75rem; }
-    .cert-item { display:flex; align-items:flex-start; gap:0.75rem; }
-    .cert-dot { width:6px; height:6px; border-radius:50%; background:var(--blue-500); flex-shrink:0; margin-top:5px; }
-    .cert-name { font-size:0.875rem; font-weight:500; color:var(--slate-200); }
-    .cert-org { font-size:0.75rem; color:var(--slate-500); }
-
-    #habilidades { background: var(--slate-800); }
-    .skills-title { text-align:center; display:block; justify-content:center; margin-bottom:3rem; }
-    .skills-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
-    .skill-card { background:var(--slate-900); border:1px solid var(--slate-700); border-radius:1rem; padding:2rem; text-align:center; }
-    .skill-card svg { width:2.5rem; height:2.5rem; margin:0 auto 1rem; display:block; }
-    .sc-blue { color:var(--blue-500); }
-    .sc-cyan { color:var(--cyan-400); }
-    .sc-emerald { color:var(--emerald-400); }
-    .skill-card h3 { font-size:1rem; font-weight:700; color:#fff; margin-bottom:1.25rem; }
-    .skill-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:0.5rem; }
-    .st { padding:0.35rem 0.75rem; font-size:0.875rem; border-radius:0.5rem; border:1px solid; }
-    .st-blue { background:rgba(30,58,138,0.2); border-color:rgba(59,130,246,0.2); color:#93c5fd; }
-    .st-cyan { background:rgba(8,145,178,0.15); border-color:rgba(34,211,238,0.2); color:var(--cyan-300); }
-    .st-em { background:rgba(6,78,59,0.2); border-color:rgba(52,211,153,0.2); color:var(--emerald-300); }
-
-    footer { background:var(--slate-950); border-top:1px solid var(--slate-800); padding:3rem 0; }
-    .footer-inner { max-width:1152px; margin:0 auto; padding:0 2rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center; }
-    .footer-cta h2 { font-size:1.5rem; font-weight:700; color:#fff; margin-bottom:1rem; }
-    .footer-cta p { font-size:0.95rem; color:var(--slate-400); margin-bottom:1.5rem; max-width:30rem; }
-    .contact-links { display:flex; flex-direction:column; gap:0.75rem; }
-    .clink { display:flex; align-items:center; gap:0.75rem; color:var(--slate-300); text-decoration:none; font-size:0.95rem; transition:color 0.2s; }
-    .clink:hover { color:var(--blue-400); }
-    .clink svg, .cstatic svg { width:1.25rem; height:1.25rem; flex-shrink:0; }
-    .cstatic { display:flex; align-items:center; gap:0.75rem; color:var(--slate-400); font-size:0.95rem; }
-    .social-btns { display:flex; gap:1rem; }
-    .soc-btn { width:3rem; height:3rem; border-radius:50%; background:var(--slate-900); border:1px solid var(--slate-800); display:flex; align-items:center; justify-content:center; color:var(--slate-400); text-decoration:none; font-size:0.8rem; font-weight:700; transition:border-color 0.2s,color 0.2s; }
-    .soc-btn:hover { border-color:var(--blue-500); color:var(--blue-400); }
-    .footer-copy { margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(51,65,85,0.5); text-align:center; font-size:0.875rem; color:var(--slate-500); }
-
-    @media(max-width:900px) {
-      .hero-inner { grid-template-columns:1fr; }
-      .hero-code-wrap { display:none; }
-      .projects-grid { grid-template-columns:1fr; }
-      .exp-grid { grid-template-columns:1fr; }
-      .skills-grid { grid-template-columns:1fr; }
-      .footer-inner { grid-template-columns:1fr; }
-    }
-    @media(max-width:640px) { .nav-links { display:none; } }
-  </style>
-</head>
-<body>
-
-<nav>
-  <div class="nav-inner">
-    <div class="nav-logo">PM<span>.</span></div>
-    <div class="nav-links">
-      <a href="#inicio">inicio</a>
-      <a href="#sobre-mi">sobre mi</a>
-      <a href="#proyectos">proyectos</a>
-      <a href="#experiencia">experiencia</a>
-      <a href="#habilidades">habilidades</a>
-    </div>
-  </div>
-</nav>
-
-<main>
-
-<section id="inicio">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-badge"><span class="badge-dot"></span>Becada por Excelencia Académica</div>
-      <h1 class="hero-title">Paula <span class="gradient">Martinez</span></h1>
-      <p class="hero-subtitle">Data Science Engineering Student</p>
-      <p class="hero-desc">Especializada en extraer, procesar y transformar datos en valor estratégico. Combino mi base técnica en infraestructura con Python y SQL para resolver problemas complejos y optimizar la toma de decisiones.</p>
-      <div class="hero-btns">
-        <a href="#proyectos" class="btn-primary">Ver Proyectos <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></a>
-        <a href="#contacto" class="btn-secondary">Contactar</a>
+// Componente para simular el desplazamiento en un repositorio de GitHub
+const GitHubScrollMockup = ({ repoName, accentColor }) => {
+  return (
+    <div className="h-48 bg-[#0d1117] relative overflow-hidden group-hover:border-slate-500 transition-colors pointer-events-none" aria-hidden="true">
+      <div className="absolute top-0 left-0 w-full animate-github-scroll flex flex-col">
+         {/* Duplicamos el contenido para crear un loop infinito de scroll perfecto */}
+         {[1, 2].map((key) => (
+           <div key={key} className="w-full shrink-0 pb-4">
+              {/* Fake Navbar GitHub */}
+              <div className="bg-[#161b22] px-3 py-2 flex items-center gap-2 border-b border-[#30363d]">
+                 <div className="w-4 h-4 rounded-full bg-slate-600"></div>
+                 <div className="h-2 w-16 bg-slate-600 rounded"></div>
+              </div>
+              
+              {/* Fake Repo Header */}
+              <div className="p-4 border-b border-[#30363d]">
+                 <div className="text-[#58a6ff] text-[11px] font-semibold mb-2 font-mono">paula-martinez / {repoName}</div>
+                 <div className="flex gap-2">
+                   <div className="h-3 w-10 bg-[#21262d] border border-[#30363d] rounded-full"></div>
+                   <div className="h-3 w-12 bg-[#21262d] border border-[#30363d] rounded-full"></div>
+                 </div>
+              </div>
+              
+              {/* Fake File Explorer */}
+              <div className="px-4 mt-4">
+                 <div className="border border-[#30363d] rounded-md overflow-hidden bg-[#0d1117]">
+                    <div className="bg-[#161b22] p-2 flex justify-between items-center border-b border-[#30363d]">
+                       <div className="h-2 w-16 bg-slate-600 rounded"></div>
+                       <div className="h-2 w-10 bg-slate-600 rounded"></div>
+                    </div>
+                    {[1, 2, 3].map(i => (
+                       <div key={i} className="p-2 flex items-center gap-2 border-b border-[#30363d] last:border-0">
+                          {/* Folder/File icon simulation */}
+                          <div className="w-3 h-3 bg-[#8b949e] rounded-sm opacity-50"></div>
+                          <div className="h-2 w-20 bg-[#8b949e] rounded opacity-70"></div>
+                          <div className="h-2 w-12 bg-[#8b949e] rounded opacity-50 ml-auto"></div>
+                       </div>
+                    ))}
+                 </div>
+              </div>
+              
+              {/* Fake README.md */}
+              <div className="px-4 mt-4">
+                 <div className="border border-[#30363d] rounded-md p-4 bg-[#0d1117]">
+                    <div className="h-3 w-20 bg-slate-300 rounded mb-4"></div>
+                    <div className="space-y-2">
+                       <div className="h-2 w-full bg-[#8b949e] rounded opacity-60"></div>
+                       <div className="h-2 w-5/6 bg-[#8b949e] rounded opacity-60"></div>
+                       <div className="h-2 w-4/6 bg-[#8b949e] rounded opacity-60"></div>
+                    </div>
+                    {/* Fake Data Chart/Visual inside Readme */}
+                    <div className={`mt-4 h-16 w-full ${accentColor} opacity-20 rounded border border-[#30363d]`}></div>
+                 </div>
+              </div>
+           </div>
+         ))}
       </div>
     </div>
-    <div class="hero-code-wrap">
-      <div class="hero-glow"></div>
-      <div class="code-block">
-        <div class="code-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
-        <p>~ <span class="kw">SELECT</span> * <span class="kw">FROM</span> talent</p>
-        <p class="ind"><span class="kw">WHERE</span> skills <span class="kw">IN</span> ('SQL', 'Python', 'Power BI')</p>
-        <p class="ind"><span class="kw">AND</span> drive = <span class="str">'100%'</span>;</p>
-        <br>
-        <p class="cm">/* Ejecutando consulta... */</p>
-        <p class="res" style="margin-top:0.5rem">1 fila devuelta: Paula Martinez.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  );
+};
 
-<section id="sobre-mi">
-  <div class="section-inner-sm">
-    <h2 class="stitle">
-      <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-      Sobre Mí
-    </h2>
-    <div class="about-card">
-      <p>Tengo 18 años y soy estudiante de Ingeniería en Ciencia de Datos en la Universidad Domínico Americano (UNICDA), donde fui galardonada con una beca del 100% por excelencia académica.</p>
-      <p>Mi trayectoria comenzó en el soporte técnico y la infraestructura de redes, lo que me dio una comprensión profunda de cómo fluye la información. Actualmente, enfoco mi carrera en la <strong>extracción de datos (SQL)</strong>, la <strong>automatización (Python)</strong> y el <strong>análisis visual (Power BI)</strong>. Me destaco por mi rápida curva de aprendizaje, mi capacidad para trabajar bajo presión y mi interés en aplicar prácticas de ciberseguridad a las bases de datos institucionales.</p>
-    </div>
-  </div>
-</section>
+const App = () => {
+  const [activeSection, setActiveSection] = useState('inicio');
 
-<section id="proyectos">
-  <div class="section-inner">
-    <h2 class="stitle">
-      <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      Proyectos Destacados
-    </h2>
-    <div class="projects-grid">
-      <div class="pcard">
-        <div class="pcard-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
-        </div>
-        <div class="pcard-body">
-          <h3>ETL & Extracción de Datos Gubernamentales</h3>
-          <p>Proceso ETL aplicado a la nómina pública de la Cámara de Diputados (821 empleados). Extracción con Python y pandas, carga a SQL Server y análisis con consultas avanzadas y vistas.</p>
-          <div class="tags"><span class="tag t-blue">SQL Server</span><span class="tag t-yellow">Python</span><span class="tag t-slate">Data Cleaning</span></div>
-          <a href="https://github.com/paulamrtz/ETL-Nomina-ETL-Payroll" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.8rem;color:var(--blue-400);text-decoration:none;font-weight:600;">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            Ver en GitHub
-          </a>
-        </div>
-      </div>
-      <div class="pcard">
-        <div class="pcard-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
-        </div>
-        <div class="pcard-body">
-          <h3>Dashboard de Análisis de Ciberbullying</h3>
-          <p>Panel interactivo en Power BI que analiza patrones de ciberbullying en 300 estudiantes. Visualiza víctimas por género y raza, relación con horas de pantalla y conductas de riesgo.</p>
-          <div class="tags"><span class="tag t-gold">Power BI</span><span class="tag t-purple">DAX</span><span class="tag t-slate">Análisis Visual</span></div>
-          <a href="https://github.com/paulamrtz/Cyberbullying-Dashboard" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.8rem;color:var(--blue-400);text-decoration:none;font-weight:600;">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            Ver en GitHub
-          </a>
-        </div>
-      </div>
-      <div class="pcard">
-        <div class="pcard-icon">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9"/></svg>
-        </div>
-        <div class="pcard-body">
-          <h3>Auditoría y Gestión de Seguridad de Redes</h3>
-          <p>Reporte de auditoría en Excel con inventario de 100 dispositivos y 50 vulnerabilidades clasificadas por nivel de riesgo. Aplica marco ISO 27001 con dashboard de seguimiento.</p>
-          <div class="tags"><span class="tag t-emerald">ISO 27001</span><span class="tag t-green">Ciberseguridad</span><span class="tag t-slate">Excel Avanzado</span></div>
-          <a href="https://github.com/paulamrtz/Auditoria-de-red" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.8rem;color:var(--blue-400);text-decoration:none;font-weight:600;">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            Ver en GitHub
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  // INYECCIÓN DE METADATOS (SEO)
+  useEffect(() => {
+    document.title = "Paula Martinez | Data Science Engineer";
+    document.documentElement.lang = "es";
 
-<section id="experiencia">
-  <div class="section-inner">
-    <div class="exp-grid">
-      <div>
-        <h2 class="stitle">
-          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
-          Experiencia Profesional
-        </h2>
-        <div class="timeline">
-          <div class="ti">
-            <div class="ti-dot"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
-            <div class="ti-content">
-              <div class="ti-header"><span class="ti-company">Antillean Construction Corp.</span><span class="ti-date">Jun 25 – Sep 25</span></div>
-              <div class="ti-role">Asistente de Soporte</div>
-              <ul><li>Gestión y levantamiento de datos civiles.</li><li>Organización de bases de datos tabulares en Excel.</li></ul>
+    const setMetaTag = (name, content) => {
+      let meta = document.querySelector(`meta[name="${name}"]`);
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.name = name;
+        document.head.appendChild(meta);
+      }
+      meta.content = content;
+    };
+
+    setMetaTag('description', 'Portafolio profesional de Paula Martinez, estudiante de Ingeniería en Ciencia de Datos especializada en SQL, Python, Power BI y Ciberseguridad.');
+    setMetaTag('keywords', 'Data Science, Data Engineering, SQL, Python, Power BI, Portafolio, Paula Martinez, República Dominicana, Análisis de Datos');
+    setMetaTag('author', 'Paula Martinez');
+  }, []);
+
+  const scrollTo = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(id);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-200 font-sans selection:bg-blue-500 selection:text-white">
+      
+      {/* Estilos CSS inyectados para tipografía y animación de GitHub */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=Syncopate:wght@700&display=swap');
+        
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        /* Animación de desplazamiento infinito para la preview de GitHub */
+        @keyframes github-scroll {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-50%); }
+        }
+        .animate-github-scroll {
+          animation: github-scroll 12s linear infinite;
+        }
+        
+        /* Reproducción de estilo "Yurei" despedazado */
+        .yurei-shattered-container {
+          position: relative;
+          display: inline-block;
+          font-family: 'Syncopate', sans-serif; /* Fuente ancha y cibernética */
+          font-weight: 700;
+          color: #f8fafc;
+          line-height: 1.2;
+          text-transform: lowercase;
+          letter-spacing: -2px;
+        }
+        .yurei-shattered-base {
+          opacity: 0; /* Ocultamos el texto base para mostrar los pedazos */
+        }
+        .yurei-slice {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          transition: transform 0.3s ease;
+        }
+        
+        /* Cortes diagonales para efecto "despedazado" con colores */
+        .slice-1 { 
+          clip-path: polygon(0 0, 100% 0, 100% 25%, 0 35%); 
+          transform: translate(-3px, -2px) rotate(-1deg); 
+          color: #38bdf8; /* Azul claro */
+          text-shadow: 2px 0px 5px rgba(56, 189, 248, 0.5);
+        }
+        .slice-2 { 
+          clip-path: polygon(0 35%, 100% 25%, 100% 55%, 0 45%); 
+          transform: translate(4px, 1px); 
+          color: #f8fafc; /* Blanco */
+        }
+        .slice-3 { 
+          clip-path: polygon(0 45%, 100% 55%, 100% 85%, 0 75%); 
+          transform: translate(-2px, 3px) rotate(0.5deg); 
+          color: #818cf8; /* Índigo */
+          text-shadow: -2px 0px 5px rgba(129, 140, 248, 0.5);
+        }
+        .slice-4 { 
+          clip-path: polygon(0 75%, 100% 85%, 100% 100%, 0 100%); 
+          transform: translate(3px, -2px); 
+          color: #f8fafc; /* Blanco */
+        }
+
+        /* Animación sutil de los pedazos flotando */
+        .yurei-shattered-container:hover .slice-1 { transform: translate(-5px, -4px) rotate(-2deg); }
+        .yurei-shattered-container:hover .slice-2 { transform: translate(6px, 2px); }
+        .yurei-shattered-container:hover .slice-3 { transform: translate(-4px, 5px) rotate(1deg); }
+        .yurei-shattered-container:hover .slice-4 { transform: translate(5px, -3px); }
+      `}} />
+
+      {/* Navegación Semántica */}
+      <nav className="fixed top-0 w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800" aria-label="Navegación principal">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex-shrink-0 font-inter font-black text-2xl tracking-tighter text-white">
+              pm<span className="text-blue-500">.</span>
             </div>
-          </div>
-          <div class="ti">
-            <div class="ti-dot"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg></div>
-            <div class="ti-content">
-              <div class="ti-header"><span class="ti-company">Cámara de Diputados</span><span class="ti-date">Ago 24 – Jun 25</span></div>
-              <div class="ti-role">Soporte Técnico / Analista Jr</div>
-              <ul><li>Extracción y análisis de bases de datos (SQL SSMS, Python).</li><li>Resolución de incidentes y mantenimiento de redes.</li></ul>
-            </div>
-          </div>
-          <div class="ti">
-            <div class="ti-dot"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
-            <div class="ti-content">
-              <div class="ti-header"><span class="ti-company">Senado de la República</span><span class="ti-date">Jun 24 – Ago 24</span></div>
-              <div class="ti-role">Auxiliar Administrativo</div>
-              <ul><li>Documentación y archivado cronológico de datos.</li><li>Gestión integral de correspondencia.</li></ul>
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-8">
+                {['inicio', 'sobre-mi', 'proyectos', 'experiencia', 'habilidades'].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollTo(item)}
+                    aria-label={`Ir a la sección ${item.replace('-', ' ')}`}
+                    className="font-inter text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors capitalize focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1"
+                  >
+                    {item.replace('-', ' ')}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </nav>
 
-      <div>
-        <h2 class="stitle">
-          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          Educación
-        </h2>
-        <div class="edu-card edu-hi">
-          <div class="edu-hdr"><h3>Ingeniería en Ciencia de Datos</h3><span class="badge-curr">Actualidad</span></div>
-          <p class="edu-school">Universidad Domínico Americano (UNICDA)</p>
-          <p class="edu-award">★ Becada en honor a la excelencia (UNICDA Excellence 100%)</p>
+      <main className="pt-16 font-inter">
+        
+        {/* HERO SECTION - ÚNICO H1 */}
+        <section id="inicio" className="min-h-[90vh] flex items-center bg-gradient-to-b from-slate-900 to-slate-800">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium mb-8 border border-blue-500/20" aria-label="Perfil profesional">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 mr-2 animate-pulse" aria-hidden="true"></span>
+                  Especialista en Datos e Infraestructura
+                </div>
+                
+                {/* ÚNICO H1 CON EFECTO YUREI DESPEDAZADO */}
+                <h1 className="text-4xl md:text-6xl lg:text-7xl mb-6">
+                  <span className="yurei-shattered-container">
+                    <span className="yurei-shattered-base">paula martínez</span>
+                    <span className="yurei-slice slice-1">paula martínez</span>
+                    <span className="yurei-slice slice-2">paula martínez</span>
+                    <span className="yurei-slice slice-3">paula martínez</span>
+                    <span className="yurei-slice slice-4">paula martínez</span>
+                  </span>
+                </h1>
+                
+                <p className="text-xl md:text-2xl font-medium text-slate-400 mb-6">
+                  Data Science Engineering
+                </p>
+                
+                <p className="text-lg text-slate-300 mb-8 max-w-xl leading-relaxed">
+                  Especializada en extraer, procesar y transformar datos en valor estratégico. 
+                  Combino mi base técnica en infraestructura con <strong className="text-white">Python</strong> y <strong className="text-white">SQL</strong> para resolver 
+                  problemas complejos y optimizar decisiones.
+                </p>
+                
+                <div className="flex space-x-4">
+                  <button 
+                    onClick={() => scrollTo('proyectos')} 
+                    aria-label="Ver mis proyectos destacados"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-slate-900"
+                  >
+                    Ver Proyectos <ChevronRight className="ml-2 w-4 h-4" aria-hidden="true" />
+                  </button>
+                  <button 
+                    onClick={() => scrollTo('contacto')} 
+                    aria-label="Ir a la sección de contacto"
+                    className="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-6 py-3 rounded-lg font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 focus:ring-offset-slate-900"
+                  >
+                    Contactar
+                  </button>
+                </div>
+              </div>
+              
+              <div className="hidden md:flex justify-center relative" aria-hidden="true">
+                <div className="w-80 h-80 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-full opacity-20 blur-3xl absolute"></div>
+                <div className="relative border border-slate-700 bg-slate-800/50 p-6 rounded-2xl shadow-2xl backdrop-blur-sm w-full max-w-md font-mono text-sm text-blue-300">
+                  <div className="flex space-x-2 mb-4">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  </div>
+                  <p>~ <span className="text-emerald-400">SELECT</span> * <span className="text-emerald-400">FROM</span> talent</p>
+                  <p className="pl-4"><span className="text-emerald-400">WHERE</span> skills <span className="text-emerald-400">IN</span> ('SQL', 'Python', 'Power BI')</p>
+                  <p className="pl-4"><span className="text-emerald-400">AND</span> drive = <span className="text-orange-300">'100%'</span>;</p>
+                  <br/>
+                  <p className="text-slate-400">/* Ejecutando consulta... */</p>
+                  <p className="text-white mt-2">1 fila devuelta: paula martínez.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SOBRE MI */}
+        <section id="sobre-mi" className="py-24 bg-slate-900">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-white mb-8 flex items-center tracking-tight">
+              <Terminal className="mr-3 text-blue-500" aria-hidden="true" /> Sobre Mí
+            </h2>
+            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 shadow-lg">
+              <p className="text-lg text-slate-300 leading-relaxed mb-6">
+                Tengo 18 años y soy estudiante avanzada de Ingeniería en Ciencia de Datos en la Universidad Domínico Americano (UNICDA), enfocada en aportar soluciones técnicas de alto impacto y eficiencia.
+              </p>
+              <p className="text-lg text-slate-300 leading-relaxed">
+                Mi trayectoria comenzó en el soporte técnico y la infraestructura de redes, lo que me dio una comprensión profunda de cómo fluye la información. Actualmente, enfoco mi carrera en la <strong className="text-white">extracción de datos (SQL)</strong>, la <strong className="text-white">automatización (Python)</strong> y el <strong className="text-white">análisis visual (Power BI)</strong>. Me destaco por mi rápida curva de aprendizaje, capacidad para trabajar bajo presión y mi interés en aplicar prácticas de ciberseguridad a las bases de datos.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* PROYECTOS DESTACADOS CON GITHUB PREVIEW */}
+        <section id="proyectos" className="py-24 bg-slate-800">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-white mb-12 flex items-center tracking-tight">
+              <Terminal className="mr-3 text-blue-500" aria-hidden="true" /> Proyectos Destacados
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              
+              {/* Proyecto 1 */}
+              <article className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-colors group flex flex-col">
+                <GitHubScrollMockup repoName="etl-gov-data" accentColor="bg-blue-500" />
+                <div className="p-6 relative z-10 bg-slate-900 flex-grow flex flex-col">
+                  <h3 className="text-xl font-bold text-white mb-2">ETL & Extracción de Datos Gubernamentales</h3>
+                  <p className="text-slate-300 text-sm mb-4 line-clamp-3 flex-grow">
+                    Desarrollo de scripts en Python y consultas complejas en SQL Server (SSMS) para la extracción, limpieza y análisis de datos de infraestructura, optimizando la resolución de incidentes internos.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6" aria-label="Tecnologías usadas">
+                    <span className="px-2 py-1 text-xs font-medium bg-blue-900/30 text-blue-300 rounded">SQL Server</span>
+                    <span className="px-2 py-1 text-xs font-medium bg-yellow-900/30 text-yellow-300 rounded">Python</span>
+                    <span className="px-2 py-1 text-xs font-medium bg-slate-800 text-slate-200 rounded">Data Cleaning</span>
+                  </div>
+                  <div className="pt-4 border-t border-slate-800 mt-auto">
+                    <a href="https://github.com/paula-martinez/etl-gov-data" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-blue-400 transition-colors group/link">
+                      <Github className="w-4 h-4 mr-2 transition-transform group-hover/link:-translate-y-1" />
+                      Ver repositorio en GitHub
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              {/* Proyecto 2 */}
+              <article className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-colors group flex flex-col">
+                <GitHubScrollMockup repoName="cybersec-dashboard" accentColor="bg-cyan-500" />
+                <div className="p-6 relative z-10 bg-slate-900 flex-grow flex flex-col">
+                  <h3 className="text-xl font-bold text-white mb-2">Dashboard Inteligencia y Ciberseguridad</h3>
+                  <p className="text-slate-300 text-sm mb-4 line-clamp-3 flex-grow">
+                    Panel interactivo desarrollado en Power BI para monitorizar métricas de seguridad de la información. Integra conceptos de la ISO 27001 para visualizar vulnerabilidades.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6" aria-label="Tecnologías usadas">
+                    <span className="px-2 py-1 text-xs font-medium bg-yellow-600/30 text-yellow-500 rounded">Power BI</span>
+                    <span className="px-2 py-1 text-xs font-medium bg-purple-900/30 text-purple-300 rounded">DAX</span>
+                    <span className="px-2 py-1 text-xs font-medium bg-slate-800 text-slate-200 rounded">Análisis Visual</span>
+                  </div>
+                  <div className="pt-4 border-t border-slate-800 mt-auto">
+                    <a href="https://github.com/paula-martinez/cybersec-dashboard" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors group/link">
+                      <Github className="w-4 h-4 mr-2 transition-transform group-hover/link:-translate-y-1" />
+                      Ver repositorio en GitHub
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              {/* Proyecto 3 */}
+              <article className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-colors group flex flex-col">
+                <GitHubScrollMockup repoName="network-audit-tool" accentColor="bg-emerald-500" />
+                <div className="p-6 relative z-10 bg-slate-900 flex-grow flex flex-col">
+                  <h3 className="text-xl font-bold text-white mb-2">Auditoría y Gestión de Redes</h3>
+                  <p className="text-slate-300 text-sm mb-4 line-clamp-3 flex-grow">
+                    Aplicación de conocimientos de CCNA y Ethical Hacking para el levantamiento de topologías de red, mantenimiento de infraestructura y documentación en MS Excel.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6" aria-label="Tecnologías usadas">
+                    <span className="px-2 py-1 text-xs font-medium bg-emerald-900/30 text-emerald-300 rounded">CCNA</span>
+                    <span className="px-2 py-1 text-xs font-medium bg-green-900/30 text-green-300 rounded">Ciberseguridad</span>
+                    <span className="px-2 py-1 text-xs font-medium bg-slate-800 text-slate-200 rounded">Excel Avanzado</span>
+                  </div>
+                  <div className="pt-4 border-t border-slate-800 mt-auto">
+                    <a href="https://github.com/paula-martinez/network-audit-tool" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-emerald-400 transition-colors group/link">
+                      <Github className="w-4 h-4 mr-2 transition-transform group-hover/link:-translate-y-1" />
+                      Ver repositorio en GitHub
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </section>
+
+        {/* EXPERIENCIA Y EDUCACIÓN */}
+        <section id="experiencia" className="py-24 bg-slate-900">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+              
+              {/* Experiencia */}
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-8 flex items-center tracking-tight">
+                  <Briefcase className="mr-3 text-blue-500" aria-hidden="true" /> Experiencia Profesional
+                </h2>
+                <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+                  
+                  {[
+                    { title: 'Asistente de Soporte', org: 'Antillean Construction Corp.', date: 'Jun 25 - Sep 25', icon: Briefcase, desc: ['Gestión y levantamiento de datos civiles.', 'Organización de bases de datos tabulares en Excel.'] },
+                    { title: 'Soporte Técnico / Analista Jr', org: 'Cámara de Diputados', date: 'Ago 24 - Jun 25', icon: Terminal, desc: ['Extracción y análisis de bases de datos (SQL SSMS, Python).', 'Resolución de incidentes y mantenimiento de redes.'] },
+                    { title: 'Auxiliar Administrativo', org: 'Senado de la República', date: 'Jun 24 - Ago 24', icon: Briefcase, desc: ['Documentación y archivado cronológico de datos.', 'Gestión integral de correspondencia.'] }
+                  ].map((job, index) => (
+                    <article key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-slate-800 text-blue-400 group-hover:border-blue-500 group-hover:text-blue-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10 transition-colors" aria-hidden="true">
+                        <job.icon className="w-4 h-4" />
+                      </div>
+                      <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-5 rounded-xl border border-slate-700 bg-slate-800/50 shadow-md">
+                        <div className="flex flex-wrap items-center justify-between space-x-2 mb-1">
+                          <h3 className="font-bold text-white">{job.org}</h3>
+                          <time className="font-mono text-xs text-blue-400">{job.date}</time>
+                        </div>
+                        <div className="text-sm font-medium text-slate-200 mb-2">{job.title}</div>
+                        <ul className="text-sm text-slate-300 space-y-1 list-disc list-inside">
+                          {job.desc.map((d, i) => <li key={i}>{d}</li>)}
+                        </ul>
+                      </div>
+                    </article>
+                  ))}
+
+                </div>
+              </div>
+
+              {/* Educación */}
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-8 flex items-center tracking-tight">
+                  <GraduationCap className="mr-3 text-blue-500" aria-hidden="true" /> Educación
+                </h2>
+                <div className="space-y-6">
+                  <article className="p-6 rounded-xl border border-blue-500/30 bg-blue-900/10 shadow-lg">
+                    <div className="flex flex-wrap justify-between items-start mb-2">
+                      <h3 className="font-bold text-lg text-white">Ingeniería en Ciencia de Datos</h3>
+                      <span className="text-xs font-mono text-blue-400 bg-blue-900/30 px-2 py-1 rounded mt-1 sm:mt-0">Actualidad</span>
+                    </div>
+                    <p className="text-slate-300 text-sm">Universidad Domínico Americano (UNICDA)</p>
+                  </article>
+
+                  <article className="p-6 rounded-xl border border-slate-700 bg-slate-800/50 shadow-lg">
+                    <div className="flex flex-wrap justify-between items-start mb-2">
+                      <h3 className="font-bold text-lg text-white">Técnico Profesional: Desarrollo Informático</h3>
+                      <span className="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-1 rounded mt-1 sm:mt-0">2022 - 2025</span>
+                    </div>
+                    <p className="text-slate-300 text-sm">Desarrollo y Gestión de Aplicaciones Informáticas. Dominio de C#, Python, SQL y Web.</p>
+                  </article>
+
+                  <h3 className="text-xl font-bold text-white mt-8 mb-4 border-b border-slate-700 pb-2">Certificaciones Clave</h3>
+                  <ul className="space-y-3" aria-label="Lista de certificaciones">
+                    {[
+                      { name: 'Manejo de Power BI e IA', org: 'Daxus (2025)' },
+                      { name: 'Ciberseguridad y Ethical Hacking', org: 'Hacker mentor (2025)' },
+                      { name: 'Seguridad de la información ISO 27001', org: 'Seguridad Cero (2025)' },
+                      { name: 'Redes y configuración inicial (CCNA)', org: '2025' }
+                    ].map((cert, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <div className="mt-1 mr-3 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" aria-hidden="true"></div>
+                        <div>
+                          <p className="text-slate-200 text-sm font-medium">{cert.name}</p>
+                          <p className="text-slate-400 text-xs">{cert.org}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* HABILIDADES */}
+        <section id="habilidades" className="py-24 bg-slate-800 border-t border-slate-800">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-white mb-12 text-center tracking-tight">Stack Tecnológico</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Data & Analytics */}
+              <article className="bg-slate-900 rounded-2xl p-8 border border-slate-700 text-center">
+                <Terminal className="w-10 h-10 text-blue-500 mx-auto mb-4" aria-hidden="true" />
+                <h3 className="text-lg font-bold text-white mb-6">Datos & Análisis</h3>
+                <div className="flex flex-wrap justify-center gap-2" aria-label="Habilidades en Datos y Análisis">
+                  {['SQL Server (SSMS)', 'Python', 'Power BI', 'Excel Avanzado', 'Queries'].map(skill => (
+                    <span key={skill} className="px-3 py-1.5 bg-blue-900/20 border border-blue-500/20 text-blue-200 rounded-lg text-sm">{skill}</span>
+                  ))}
+                </div>
+              </article>
+
+              {/* Development */}
+              <article className="bg-slate-900 rounded-2xl p-8 border border-slate-700 text-center">
+                <Terminal className="w-10 h-10 text-cyan-500 mx-auto mb-4" aria-hidden="true" />
+                <h3 className="text-lg font-bold text-white mb-6">Desarrollo</h3>
+                <div className="flex flex-wrap justify-center gap-2" aria-label="Habilidades en Desarrollo">
+                  {['C#', 'C++', 'Python', 'HTML/CSS', 'JavaScript', 'PHP'].map(skill => (
+                    <span key={skill} className="px-3 py-1.5 bg-cyan-900/20 border border-cyan-500/20 text-cyan-200 rounded-lg text-sm">{skill}</span>
+                  ))}
+                </div>
+              </article>
+
+              {/* Infra & Security */}
+              <article className="bg-slate-900 rounded-2xl p-8 border border-slate-700 text-center">
+                <Terminal className="w-10 h-10 text-emerald-500 mx-auto mb-4" aria-hidden="true" />
+                <h3 className="text-lg font-bold text-white mb-6">Infraestructura & Seguridad</h3>
+                <div className="flex flex-wrap justify-center gap-2" aria-label="Habilidades en Infraestructura y Seguridad">
+                  {['Redes Básicas', 'CCNA', 'Ciberseguridad', 'ISO 27001', 'Hardware', 'Office 365'].map(skill => (
+                    <span key={skill} className="px-3 py-1.5 bg-emerald-900/20 border border-emerald-500/20 text-emerald-200 rounded-lg text-sm">{skill}</span>
+                  ))}
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      {/* FOOTER & CONTACTO */}
+      <footer id="contacto" className="bg-slate-950 border-t border-slate-800 py-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4 tracking-tight">¿Hablamos de datos?</h2>
+              <p className="text-slate-300 mb-6 max-w-md">
+                Estoy abierta a oportunidades como Analista de Datos Jr., Pasante de Ingeniería de Datos o roles en soporte TI.
+              </p>
+              <address className="space-y-3 text-slate-200 not-italic">
+                <a href="mailto:martinezpaula0728@gmail.com" className="flex items-center hover:text-blue-400 transition-colors focus:outline-none focus:underline" aria-label="Enviar correo electrónico a Paula Martinez">
+                  <Mail className="w-5 h-5 mr-3" aria-hidden="true" /> martinezpaula0728@gmail.com
+                </a>
+                <a href="tel:8299903179" className="flex items-center hover:text-blue-400 transition-colors focus:outline-none focus:underline" aria-label="Llamar al teléfono de Paula Martinez">
+                  <Phone className="w-5 h-5 mr-3" aria-hidden="true" /> (829)-990-3179
+                </a>
+                <div className="flex items-center text-slate-300" aria-label="Ubicación: Santo Domingo, Distrito Nacional">
+                  <MapPin className="w-5 h-5 mr-3" aria-hidden="true" /> Santo Domingo, Distrito Nacional
+                </div>
+              </address>
+            </div>
+            
+            <div className="flex justify-start md:justify-end space-x-6">
+              <a href="#" aria-label="Perfil de LinkedIn" className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:border-blue-500 hover:text-blue-400 text-slate-300 transition-all focus:ring-2 focus:ring-blue-500">
+                IN
+              </a>
+              <a href="#" aria-label="Perfil de GitHub" className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:border-white hover:text-white text-slate-300 transition-all focus:ring-2 focus:ring-white">
+                GH
+              </a>
+            </div>
+          </div>
+          
+          <div className="mt-12 pt-8 border-t border-slate-800/50 text-center text-sm text-slate-400">
+            © {new Date().getFullYear()} Paula Martinez. Data Science Portfolio.
+          </div>
         </div>
-        <div class="edu-card edu-nm">
-          <div class="edu-hdr"><h3>Técnico Profesional: Desarrollo Informático</h3><span class="badge-yr">2022 – 2025</span></div>
-          <p class="edu-desc">Desarrollo y Gestión de Aplicaciones Informáticas. Dominio de C#, Python, SQL y Web.</p>
-        </div>
-        <p class="certs-ttl">Certificaciones Clave</p>
-        <ul class="cert-list">
-          <li class="cert-item"><div class="cert-dot"></div><div><p class="cert-name">Manejo de Power BI e IA</p><p class="cert-org">Daxus (2025)</p></div></li>
-          <li class="cert-item"><div class="cert-dot"></div><div><p class="cert-name">Ciberseguridad y Ethical Hacking</p><p class="cert-org">Hacker Mentor (2025)</p></div></li>
-          <li class="cert-item"><div class="cert-dot"></div><div><p class="cert-name">Seguridad de la Información ISO 27001</p><p class="cert-org">Seguridad Cero (2025)</p></div></li>
-          <li class="cert-item"><div class="cert-dot"></div><div><p class="cert-name">Redes y Configuración Inicial (CCNA)</p><p class="cert-org">2025</p></div></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+      </footer>
 
-<section id="habilidades">
-  <div class="section-inner">
-    <h2 class="stitle skills-title">Stack Tecnológico</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <svg class="sc-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
-        <h3>Datos & Análisis</h3>
-        <div class="skill-tags"><span class="st st-blue">SQL Server (SSMS)</span><span class="st st-blue">Python</span><span class="st st-blue">Power BI</span><span class="st st-blue">Excel Avanzado</span><span class="st st-blue">Creación de Consultas</span></div>
-      </div>
-      <div class="skill-card">
-        <svg class="sc-cyan" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        <h3>Desarrollo</h3>
-        <div class="skill-tags"><span class="st st-cyan">C#</span><span class="st st-cyan">C++</span><span class="st st-cyan">Python</span><span class="st st-cyan">HTML/CSS</span><span class="st st-cyan">JavaScript</span><span class="st st-cyan">PHP</span></div>
-      </div>
-      <div class="skill-card">
-        <svg class="sc-emerald" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9"/></svg>
-        <h3>Infraestructura & Seguridad</h3>
-        <div class="skill-tags"><span class="st st-em">Redes Básicas</span><span class="st st-em">CCNA</span><span class="st st-em">Ciberseguridad</span><span class="st st-em">ISO 27001</span><span class="st st-em">Hardware</span><span class="st st-em">Office 365</span></div>
-      </div>
     </div>
-  </div>
-</section>
+  );
+};
 
-</main>
-
-<footer id="contacto">
-  <div class="footer-inner">
-    <div class="footer-cta">
-      <h2>Excelencia, profesionalismo y disciplina</h2>
-      <p>Estoy abierta a oportunidades como roles en soporte TI, Analista de datos Jr. o Pasante de Ingeniería de Datos.</p>
-      <div class="contact-links">
-        <div class="clink">
-  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-  martinezpaula0728@gmail.com
-</div>
-        <a href="tel:8299903179" class="clink">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 012 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
-          (829)-990-3179
-        </a>
-        <div class="cstatic">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Santo Domingo, Distrito Nacional
-        </div>
-      </div>
-    </div>
-    <div class="social-btns">
-      <a href="#" class="soc-btn">IN</a>
-      <a href="#" class="soc-btn">GH</a>
-    </div>
-  </div>
-  <div cla
+export default App;
