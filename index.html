@@ -1,114 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Briefcase, 
-  GraduationCap, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  ChevronRight,
-  Terminal,
-  Github
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paula Martinez | Data Science Engineer</title>
+    <meta name="description" content="Portafolio profesional de Paula Martinez, Especialista en Datos e Infraestructura manejando SQL, Python y Ciberseguridad.">
+    <meta name="keywords" content="Data Science, Data Engineering, SQL, Python, Power BI, Portafolio, Paula Martinez, República Dominicana">
+    <meta name="author" content="Paula Martinez">
 
-// Componente para simular el desplazamiento en un repositorio de GitHub
-const GitHubScrollMockup = ({ repoName, accentColor }) => {
-  return (
-    <div className="h-48 bg-[#0d1117] relative overflow-hidden group-hover:border-slate-500 transition-colors pointer-events-none" aria-hidden="true">
-      <div className="absolute top-0 left-0 w-full animate-github-scroll flex flex-col">
-         {/* Duplicamos el contenido para crear un loop infinito de scroll perfecto */}
-         {[1, 2].map((key) => (
-           <div key={key} className="w-full shrink-0 pb-4">
-              {/* Fake Navbar GitHub */}
-              <div className="bg-[#161b22] px-3 py-2 flex items-center gap-2 border-b border-[#30363d]">
-                 <div className="w-4 h-4 rounded-full bg-slate-600"></div>
-                 <div className="h-2 w-16 bg-slate-600 rounded"></div>
-              </div>
-              
-              {/* Fake Repo Header */}
-              <div className="p-4 border-b border-[#30363d]">
-                 <div className="text-[#58a6ff] text-[11px] font-semibold mb-2 font-mono">paula-martinez / {repoName}</div>
-                 <div className="flex gap-2">
-                   <div className="h-3 w-10 bg-[#21262d] border border-[#30363d] rounded-full"></div>
-                   <div className="h-3 w-12 bg-[#21262d] border border-[#30363d] rounded-full"></div>
-                 </div>
-              </div>
-              
-              {/* Fake File Explorer */}
-              <div className="px-4 mt-4">
-                 <div className="border border-[#30363d] rounded-md overflow-hidden bg-[#0d1117]">
-                    <div className="bg-[#161b22] p-2 flex justify-between items-center border-b border-[#30363d]">
-                       <div className="h-2 w-16 bg-slate-600 rounded"></div>
-                       <div className="h-2 w-10 bg-slate-600 rounded"></div>
-                    </div>
-                    {[1, 2, 3].map(i => (
-                       <div key={i} className="p-2 flex items-center gap-2 border-b border-[#30363d] last:border-0">
-                          {/* Folder/File icon simulation */}
-                          <div className="w-3 h-3 bg-[#8b949e] rounded-sm opacity-50"></div>
-                          <div className="h-2 w-20 bg-[#8b949e] rounded opacity-70"></div>
-                          <div className="h-2 w-12 bg-[#8b949e] rounded opacity-50 ml-auto"></div>
-                       </div>
-                    ))}
-                 </div>
-              </div>
-              
-              {/* Fake README.md */}
-              <div className="px-4 mt-4">
-                 <div className="border border-[#30363d] rounded-md p-4 bg-[#0d1117]">
-                    <div className="h-3 w-20 bg-slate-300 rounded mb-4"></div>
-                    <div className="space-y-2">
-                       <div className="h-2 w-full bg-[#8b949e] rounded opacity-60"></div>
-                       <div className="h-2 w-5/6 bg-[#8b949e] rounded opacity-60"></div>
-                       <div className="h-2 w-4/6 bg-[#8b949e] rounded opacity-60"></div>
-                    </div>
-                    {/* Fake Data Chart/Visual inside Readme */}
-                    <div className={`mt-4 h-16 w-full ${accentColor} opacity-20 rounded border border-[#30363d]`}></div>
-                 </div>
-              </div>
-           </div>
-         ))}
-      </div>
-    </div>
-  );
-};
+    <!-- Carga de Tailwind CSS para los estilos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Carga de React y ReactDOM para la lógica de la interfaz -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    
+    <!-- Carga de Babel para que el navegador entienda el código JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-const App = () => {
-  const [activeSection, setActiveSection] = useState('inicio');
-
-  // INYECCIÓN DE METADATOS (SEO)
-  useEffect(() => {
-    document.title = "Paula Martinez | Data Science Engineer";
-    document.documentElement.lang = "es";
-
-    const setMetaTag = (name, content) => {
-      let meta = document.querySelector(`meta[name="${name}"]`);
-      if (!meta) {
-        meta = document.createElement('meta');
-        meta.name = name;
-        document.head.appendChild(meta);
-      }
-      meta.content = content;
-    };
-
-    setMetaTag('description', 'Portafolio profesional de Paula Martinez, estudiante de Ingeniería en Ciencia de Datos especializada en SQL, Python, Power BI y Ciberseguridad.');
-    setMetaTag('keywords', 'Data Science, Data Engineering, SQL, Python, Power BI, Portafolio, Paula Martinez, República Dominicana, Análisis de Datos');
-    setMetaTag('author', 'Paula Martinez');
-  }, []);
-
-  const scrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(id);
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-slate-900 text-slate-200 font-sans selection:bg-blue-500 selection:text-white">
-      
-      {/* Estilos CSS inyectados para tipografía y animación de GitHub */}
-      <style dangerouslySetInnerHTML={{__html: `
+    <!-- Estilos personalizados: Fuentes y Animaciones -->
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=Syncopate:wght@700&display=swap');
         
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; }
         .font-inter { font-family: 'Inter', sans-serif; }
         
         /* Animación de desplazamiento infinito para la preview de GitHub */
@@ -143,7 +57,7 @@ const App = () => {
           transition: transform 0.3s ease;
         }
         
-        /* Cortes diagonales para efecto "despedazado" con colores */
+        /* Cortes diagonales para efecto "despedazado" con colores neón */
         .slice-1 { 
           clip-path: polygon(0 0, 100% 0, 100% 25%, 0 35%); 
           transform: translate(-3px, -2px) rotate(-1deg); 
@@ -167,371 +81,471 @@ const App = () => {
           color: #f8fafc; /* Blanco */
         }
 
-        /* Animación sutil de los pedazos flotando */
+        /* Animación sutil de los pedazos flotando al pasar el mouse */
         .yurei-shattered-container:hover .slice-1 { transform: translate(-5px, -4px) rotate(-2deg); }
         .yurei-shattered-container:hover .slice-2 { transform: translate(6px, 2px); }
         .yurei-shattered-container:hover .slice-3 { transform: translate(-4px, 5px) rotate(1deg); }
         .yurei-shattered-container:hover .slice-4 { transform: translate(5px, -3px); }
-      `}} />
+    </style>
+</head>
+<body>
+    <!-- Aquí se inyectará la aplicación de React -->
+    <div id="root"></div>
 
-      {/* Navegación Semántica */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800" aria-label="Navegación principal">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex-shrink-0 font-inter font-black text-2xl tracking-tighter text-white">
-              pm<span className="text-blue-500">.</span>
-            </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
-                {['inicio', 'sobre-mi', 'proyectos', 'experiencia', 'habilidades'].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollTo(item)}
-                    aria-label={`Ir a la sección ${item.replace('-', ' ')}`}
-                    className="font-inter text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors capitalize focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1"
-                  >
-                    {item.replace('-', ' ')}
-                  </button>
-                ))}
+    <!-- Código de la Aplicación -->
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Componentes de Íconos SVG independientes (reemplazan a lucide-react para compatibilidad HTML puro)
+        const IconBase = ({ children, className }) => (
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+            {children}
+          </svg>
+        );
+        const TerminalIcon = ({className}) => <IconBase className={className}><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></IconBase>;
+        const BriefcaseIcon = ({className}) => <IconBase className={className}><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></IconBase>;
+        const GraduationCapIcon = ({className}) => <IconBase className={className}><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></IconBase>;
+        const MailIcon = ({className}) => <IconBase className={className}><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></IconBase>;
+        const PhoneIcon = ({className}) => <IconBase className={className}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></IconBase>;
+        const MapPinIcon = ({className}) => <IconBase className={className}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></IconBase>;
+        const ChevronRightIcon = ({className}) => <IconBase className={className}><path d="m9 18 6-6-6-6"/></IconBase>;
+        const GithubIcon = ({className}) => <IconBase className={className}><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></IconBase>;
+
+        // Componente para simular el desplazamiento en un repositorio de GitHub
+        const GitHubScrollMockup = ({ repoName, accentColor }) => {
+          return (
+            <div className="h-48 bg-[#0d1117] relative overflow-hidden group-hover:border-slate-500 transition-colors pointer-events-none" aria-hidden="true">
+              <div className="absolute top-0 left-0 w-full animate-github-scroll flex flex-col">
+                 {/* Duplicamos el contenido para crear un loop infinito de scroll perfecto */}
+                 {[1, 2].map((key) => (
+                   <div key={key} className="w-full shrink-0 pb-4">
+                      {/* Fake Navbar GitHub */}
+                      <div className="bg-[#161b22] px-3 py-2 flex items-center gap-2 border-b border-[#30363d]">
+                         <div className="w-4 h-4 rounded-full bg-slate-600"></div>
+                         <div className="h-2 w-16 bg-slate-600 rounded"></div>
+                      </div>
+                      
+                      {/* Fake Repo Header */}
+                      <div className="p-4 border-b border-[#30363d]">
+                         <div className="text-[#58a6ff] text-[11px] font-semibold mb-2 font-mono">paula-martinez / {repoName}</div>
+                         <div className="flex gap-2">
+                           <div className="h-3 w-10 bg-[#21262d] border border-[#30363d] rounded-full"></div>
+                           <div className="h-3 w-12 bg-[#21262d] border border-[#30363d] rounded-full"></div>
+                         </div>
+                      </div>
+                      
+                      {/* Fake File Explorer */}
+                      <div className="px-4 mt-4">
+                         <div className="border border-[#30363d] rounded-md overflow-hidden bg-[#0d1117]">
+                            <div className="bg-[#161b22] p-2 flex justify-between items-center border-b border-[#30363d]">
+                               <div className="h-2 w-16 bg-slate-600 rounded"></div>
+                               <div className="h-2 w-10 bg-slate-600 rounded"></div>
+                            </div>
+                            {[1, 2, 3].map(i => (
+                               <div key={i} className="p-2 flex items-center gap-2 border-b border-[#30363d] last:border-0">
+                                  <div className="w-3 h-3 bg-[#8b949e] rounded-sm opacity-50"></div>
+                                  <div className="h-2 w-20 bg-[#8b949e] rounded opacity-70"></div>
+                                  <div className="h-2 w-12 bg-[#8b949e] rounded opacity-50 ml-auto"></div>
+                               </div>
+                            ))}
+                         </div>
+                      </div>
+                      
+                      {/* Fake README.md */}
+                      <div className="px-4 mt-4">
+                         <div className="border border-[#30363d] rounded-md p-4 bg-[#0d1117]">
+                            <div className="h-3 w-20 bg-slate-300 rounded mb-4"></div>
+                            <div className="space-y-2">
+                               <div className="h-2 w-full bg-[#8b949e] rounded opacity-60"></div>
+                               <div className="h-2 w-5/6 bg-[#8b949e] rounded opacity-60"></div>
+                               <div className="h-2 w-4/6 bg-[#8b949e] rounded opacity-60"></div>
+                            </div>
+                            <div className={`mt-4 h-16 w-full ${accentColor} opacity-20 rounded border border-[#30363d]`}></div>
+                         </div>
+                      </div>
+                   </div>
+                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </nav>
+          );
+        };
 
-      <main className="pt-16 font-inter">
-        
-        {/* HERO SECTION - ÚNICO H1 */}
-        <section id="inicio" className="min-h-[90vh] flex items-center bg-gradient-to-b from-slate-900 to-slate-800">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium mb-8 border border-blue-500/20" aria-label="Perfil profesional">
-                  <span className="w-2 h-2 rounded-full bg-blue-500 mr-2 animate-pulse" aria-hidden="true"></span>
-                  Especialista en Datos e Infraestructura
-                </div>
-                
-                {/* ÚNICO H1 CON EFECTO YUREI DESPEDAZADO */}
-                <h1 className="text-4xl md:text-6xl lg:text-7xl mb-6">
-                  <span className="yurei-shattered-container">
-                    <span className="yurei-shattered-base">paula martínez</span>
-                    <span className="yurei-slice slice-1">paula martínez</span>
-                    <span className="yurei-slice slice-2">paula martínez</span>
-                    <span className="yurei-slice slice-3">paula martínez</span>
-                    <span className="yurei-slice slice-4">paula martínez</span>
-                  </span>
-                </h1>
-                
-                <p className="text-xl md:text-2xl font-medium text-slate-400 mb-6">
-                  Data Science Engineering
-                </p>
-                
-                <p className="text-lg text-slate-300 mb-8 max-w-xl leading-relaxed">
-                  Especializada en extraer, procesar y transformar datos en valor estratégico. 
-                  Combino mi base técnica en infraestructura con <strong className="text-white">Python</strong> y <strong className="text-white">SQL</strong> para resolver 
-                  problemas complejos y optimizar decisiones.
-                </p>
-                
-                <div className="flex space-x-4">
-                  <button 
-                    onClick={() => scrollTo('proyectos')} 
-                    aria-label="Ver mis proyectos destacados"
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-slate-900"
-                  >
-                    Ver Proyectos <ChevronRight className="ml-2 w-4 h-4" aria-hidden="true" />
-                  </button>
-                  <button 
-                    onClick={() => scrollTo('contacto')} 
-                    aria-label="Ir a la sección de contacto"
-                    className="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-6 py-3 rounded-lg font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 focus:ring-offset-slate-900"
-                  >
-                    Contactar
-                  </button>
-                </div>
-              </div>
+        const App = () => {
+          const [activeSection, setActiveSection] = useState('inicio');
+
+          const scrollTo = (id) => {
+            const element = document.getElementById(id);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+              setActiveSection(id);
+            }
+          };
+
+          return (
+            <div className="min-h-screen bg-slate-900 text-slate-200 font-sans selection:bg-blue-500 selection:text-white pb-10">
               
-              <div className="hidden md:flex justify-center relative" aria-hidden="true">
-                <div className="w-80 h-80 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-full opacity-20 blur-3xl absolute"></div>
-                <div className="relative border border-slate-700 bg-slate-800/50 p-6 rounded-2xl shadow-2xl backdrop-blur-sm w-full max-w-md font-mono text-sm text-blue-300">
-                  <div className="flex space-x-2 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  </div>
-                  <p>~ <span className="text-emerald-400">SELECT</span> * <span className="text-emerald-400">FROM</span> talent</p>
-                  <p className="pl-4"><span className="text-emerald-400">WHERE</span> skills <span className="text-emerald-400">IN</span> ('SQL', 'Python', 'Power BI')</p>
-                  <p className="pl-4"><span className="text-emerald-400">AND</span> drive = <span className="text-orange-300">'100%'</span>;</p>
-                  <br/>
-                  <p className="text-slate-400">/* Ejecutando consulta... */</p>
-                  <p className="text-white mt-2">1 fila devuelta: paula martínez.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SOBRE MI */}
-        <section id="sobre-mi" className="py-24 bg-slate-900">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-8 flex items-center tracking-tight">
-              <Terminal className="mr-3 text-blue-500" aria-hidden="true" /> Sobre Mí
-            </h2>
-            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 shadow-lg">
-              <p className="text-lg text-slate-300 leading-relaxed mb-6">
-                Tengo 18 años y soy estudiante avanzada de Ingeniería en Ciencia de Datos en la Universidad Domínico Americano (UNICDA), enfocada en aportar soluciones técnicas de alto impacto y eficiencia.
-              </p>
-              <p className="text-lg text-slate-300 leading-relaxed">
-                Mi trayectoria comenzó en el soporte técnico y la infraestructura de redes, lo que me dio una comprensión profunda de cómo fluye la información. Actualmente, enfoco mi carrera en la <strong className="text-white">extracción de datos (SQL)</strong>, la <strong className="text-white">automatización (Python)</strong> y el <strong className="text-white">análisis visual (Power BI)</strong>. Me destaco por mi rápida curva de aprendizaje, capacidad para trabajar bajo presión y mi interés en aplicar prácticas de ciberseguridad a las bases de datos.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* PROYECTOS DESTACADOS CON GITHUB PREVIEW */}
-        <section id="proyectos" className="py-24 bg-slate-800">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12 flex items-center tracking-tight">
-              <Terminal className="mr-3 text-blue-500" aria-hidden="true" /> Proyectos Destacados
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              
-              {/* Proyecto 1 */}
-              <article className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-colors group flex flex-col">
-                <GitHubScrollMockup repoName="etl-gov-data" accentColor="bg-blue-500" />
-                <div className="p-6 relative z-10 bg-slate-900 flex-grow flex flex-col">
-                  <h3 className="text-xl font-bold text-white mb-2">ETL & Extracción de Datos Gubernamentales</h3>
-                  <p className="text-slate-300 text-sm mb-4 line-clamp-3 flex-grow">
-                    Desarrollo de scripts en Python y consultas complejas en SQL Server (SSMS) para la extracción, limpieza y análisis de datos de infraestructura, optimizando la resolución de incidentes internos.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-6" aria-label="Tecnologías usadas">
-                    <span className="px-2 py-1 text-xs font-medium bg-blue-900/30 text-blue-300 rounded">SQL Server</span>
-                    <span className="px-2 py-1 text-xs font-medium bg-yellow-900/30 text-yellow-300 rounded">Python</span>
-                    <span className="px-2 py-1 text-xs font-medium bg-slate-800 text-slate-200 rounded">Data Cleaning</span>
-                  </div>
-                  <div className="pt-4 border-t border-slate-800 mt-auto">
-                    <a href="https://github.com/paula-martinez/etl-gov-data" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-blue-400 transition-colors group/link">
-                      <Github className="w-4 h-4 mr-2 transition-transform group-hover/link:-translate-y-1" />
-                      Ver repositorio en GitHub
-                    </a>
+              {/* Navegación Semántica */}
+              <nav className="fixed top-0 w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800" aria-label="Navegación principal">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="flex items-center justify-between h-16">
+                    <div className="flex-shrink-0 font-inter font-black text-2xl tracking-tighter text-white">
+                      pm<span className="text-blue-500">.</span>
+                    </div>
+                    <div className="hidden md:block">
+                      <div className="ml-10 flex items-baseline space-x-8">
+                        {['inicio', 'sobre-mi', 'proyectos', 'experiencia', 'habilidades'].map((item) => (
+                          <button
+                            key={item}
+                            onClick={() => scrollTo(item)}
+                            aria-label={`Ir a la sección ${item.replace('-', ' ')}`}
+                            className="font-inter text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors capitalize focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-2 py-1"
+                          >
+                            {item.replace('-', ' ')}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </article>
+              </nav>
 
-              {/* Proyecto 2 */}
-              <article className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-colors group flex flex-col">
-                <GitHubScrollMockup repoName="cybersec-dashboard" accentColor="bg-cyan-500" />
-                <div className="p-6 relative z-10 bg-slate-900 flex-grow flex flex-col">
-                  <h3 className="text-xl font-bold text-white mb-2">Dashboard Inteligencia y Ciberseguridad</h3>
-                  <p className="text-slate-300 text-sm mb-4 line-clamp-3 flex-grow">
-                    Panel interactivo desarrollado en Power BI para monitorizar métricas de seguridad de la información. Integra conceptos de la ISO 27001 para visualizar vulnerabilidades.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-6" aria-label="Tecnologías usadas">
-                    <span className="px-2 py-1 text-xs font-medium bg-yellow-600/30 text-yellow-500 rounded">Power BI</span>
-                    <span className="px-2 py-1 text-xs font-medium bg-purple-900/30 text-purple-300 rounded">DAX</span>
-                    <span className="px-2 py-1 text-xs font-medium bg-slate-800 text-slate-200 rounded">Análisis Visual</span>
+              <main className="pt-16 font-inter">
+                
+                {/* HERO SECTION - ÚNICO H1 */}
+                <section id="inicio" className="min-h-[90vh] flex items-center bg-gradient-to-b from-slate-900 to-slate-800">
+                  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                      <div>
+                        <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium mb-8 border border-blue-500/20" aria-label="Perfil profesional">
+                          <span className="w-2 h-2 rounded-full bg-blue-500 mr-2 animate-pulse" aria-hidden="true"></span>
+                          Especialista en Datos e Infraestructura
+                        </div>
+                        
+                        {/* ÚNICO H1 CON EFECTO YUREI DESPEDAZADO */}
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl mb-6">
+                          <span className="yurei-shattered-container">
+                            <span className="yurei-shattered-base">paula martínez</span>
+                            <span className="yurei-slice slice-1">paula martínez</span>
+                            <span className="yurei-slice slice-2">paula martínez</span>
+                            <span className="yurei-slice slice-3">paula martínez</span>
+                            <span className="yurei-slice slice-4">paula martínez</span>
+                          </span>
+                        </h1>
+                        
+                        <p className="text-xl md:text-2xl font-medium text-slate-400 mb-6">
+                          Data Science Engineering
+                        </p>
+                        
+                        <p className="text-lg text-slate-300 mb-8 max-w-xl leading-relaxed">
+                          Especializada en extraer, procesar y transformar datos en valor estratégico. 
+                          Combino mi base técnica en infraestructura con <strong className="text-white">Python</strong> y <strong className="text-white">SQL</strong> para resolver 
+                          problemas complejos y optimizar decisiones.
+                        </p>
+                        
+                        <div className="flex space-x-4">
+                          <button 
+                            onClick={() => scrollTo('proyectos')} 
+                            aria-label="Ver mis proyectos destacados"
+                            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:ring-offset-slate-900"
+                          >
+                            Ver Proyectos <ChevronRightIcon className="ml-2 w-4 h-4" aria-hidden="true" />
+                          </button>
+                          <button 
+                            onClick={() => scrollTo('contacto')} 
+                            aria-label="Ir a la sección de contacto"
+                            className="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-6 py-3 rounded-lg font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 focus:ring-offset-slate-900"
+                          >
+                            Contactar
+                          </button>
+                        </div>
+                      </div>
+                      
+                      <div className="hidden md:flex justify-center relative" aria-hidden="true">
+                        <div className="w-80 h-80 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-full opacity-20 blur-3xl absolute"></div>
+                        <div className="relative border border-slate-700 bg-slate-800/50 p-6 rounded-2xl shadow-2xl backdrop-blur-sm w-full max-w-md font-mono text-sm text-blue-300">
+                          <div className="flex space-x-2 mb-4">
+                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                          </div>
+                          <p>~ <span className="text-emerald-400">SELECT</span> * <span className="text-emerald-400">FROM</span> talent</p>
+                          <p className="pl-4"><span className="text-emerald-400">WHERE</span> skills <span className="text-emerald-400">IN</span> ('SQL', 'Python', 'Power BI')</p>
+                          <p className="pl-4"><span className="text-emerald-400">AND</span> drive = <span className="text-orange-300">'100%'</span>;</p>
+                          <br/>
+                          <p className="text-slate-400">/* Ejecutando consulta... */</p>
+                          <p className="text-white mt-2">1 fila devuelta: paula martínez.</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="pt-4 border-t border-slate-800 mt-auto">
-                    <a href="https://github.com/paula-martinez/cybersec-dashboard" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors group/link">
-                      <Github className="w-4 h-4 mr-2 transition-transform group-hover/link:-translate-y-1" />
-                      Ver repositorio en GitHub
-                    </a>
-                  </div>
-                </div>
-              </article>
+                </section>
 
-              {/* Proyecto 3 */}
-              <article className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-colors group flex flex-col">
-                <GitHubScrollMockup repoName="network-audit-tool" accentColor="bg-emerald-500" />
-                <div className="p-6 relative z-10 bg-slate-900 flex-grow flex flex-col">
-                  <h3 className="text-xl font-bold text-white mb-2">Auditoría y Gestión de Redes</h3>
-                  <p className="text-slate-300 text-sm mb-4 line-clamp-3 flex-grow">
-                    Aplicación de conocimientos de CCNA y Ethical Hacking para el levantamiento de topologías de red, mantenimiento de infraestructura y documentación en MS Excel.
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-6" aria-label="Tecnologías usadas">
-                    <span className="px-2 py-1 text-xs font-medium bg-emerald-900/30 text-emerald-300 rounded">CCNA</span>
-                    <span className="px-2 py-1 text-xs font-medium bg-green-900/30 text-green-300 rounded">Ciberseguridad</span>
-                    <span className="px-2 py-1 text-xs font-medium bg-slate-800 text-slate-200 rounded">Excel Avanzado</span>
+                {/* SOBRE MI */}
+                <section id="sobre-mi" className="py-24 bg-slate-900">
+                  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-3xl font-bold text-white mb-8 flex items-center tracking-tight">
+                      <TerminalIcon className="mr-3 text-blue-500" aria-hidden="true" /> Sobre Mí
+                    </h2>
+                    <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 shadow-lg">
+                      <p className="text-lg text-slate-300 leading-relaxed mb-6">
+                        Tengo 18 años y soy estudiante avanzada de Ingeniería en Ciencia de Datos en la Universidad Domínico Americano (UNICDA), enfocada en aportar soluciones técnicas de alto impacto y eficiencia.
+                      </p>
+                      <p className="text-lg text-slate-300 leading-relaxed">
+                        Mi trayectoria comenzó en el soporte técnico y la infraestructura de redes, lo que me dio una comprensión profunda de cómo fluye la información. Actualmente, enfoco mi carrera en la <strong className="text-white">extracción de datos (SQL)</strong>, la <strong className="text-white">automatización (Python)</strong> y el <strong className="text-white">análisis visual (Power BI)</strong>. Me destaco por mi rápida curva de aprendizaje, capacidad para trabajar bajo presión y mi interés en aplicar prácticas de ciberseguridad a las bases de datos.
+                      </p>
+                    </div>
                   </div>
-                  <div className="pt-4 border-t border-slate-800 mt-auto">
-                    <a href="https://github.com/paula-martinez/network-audit-tool" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-emerald-400 transition-colors group/link">
-                      <Github className="w-4 h-4 mr-2 transition-transform group-hover/link:-translate-y-1" />
-                      Ver repositorio en GitHub
-                    </a>
+                </section>
+
+                {/* PROYECTOS DESTACADOS CON GITHUB PREVIEW */}
+                <section id="proyectos" className="py-24 bg-slate-800">
+                  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-3xl font-bold text-white mb-12 flex items-center tracking-tight">
+                      <TerminalIcon className="mr-3 text-blue-500" aria-hidden="true" /> Proyectos Destacados
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      
+                      {/* Proyecto 1 */}
+                      <article className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-colors group flex flex-col">
+                        <GitHubScrollMockup repoName="etl-gov-data" accentColor="bg-blue-500" />
+                        <div className="p-6 relative z-10 bg-slate-900 flex-grow flex flex-col">
+                          <h3 className="text-xl font-bold text-white mb-2">ETL & Extracción de Datos Gubernamentales</h3>
+                          <p className="text-slate-300 text-sm mb-4 line-clamp-3 flex-grow">
+                            Desarrollo de scripts en Python y consultas complejas en SQL Server (SSMS) para la extracción, limpieza y análisis de datos de infraestructura, optimizando la resolución de incidentes internos.
+                          </p>
+                          <div className="flex flex-wrap gap-2 mb-6" aria-label="Tecnologías usadas">
+                            <span className="px-2 py-1 text-xs font-medium bg-blue-900/30 text-blue-300 rounded">SQL Server</span>
+                            <span className="px-2 py-1 text-xs font-medium bg-yellow-900/30 text-yellow-300 rounded">Python</span>
+                            <span className="px-2 py-1 text-xs font-medium bg-slate-800 text-slate-200 rounded">Data Cleaning</span>
+                          </div>
+                          <div className="pt-4 border-t border-slate-800 mt-auto">
+                            <a href="https://github.com/paula-martinez/etl-gov-data" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-blue-400 transition-colors group/link">
+                              <GithubIcon className="w-4 h-4 mr-2 transition-transform group-hover/link:-translate-y-1" />
+                              Ver repositorio en GitHub
+                            </a>
+                          </div>
+                        </div>
+                      </article>
+
+                      {/* Proyecto 2 */}
+                      <article className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-colors group flex flex-col">
+                        <GitHubScrollMockup repoName="cybersec-dashboard" accentColor="bg-cyan-500" />
+                        <div className="p-6 relative z-10 bg-slate-900 flex-grow flex flex-col">
+                          <h3 className="text-xl font-bold text-white mb-2">Dashboard Inteligencia y Ciberseguridad</h3>
+                          <p className="text-slate-300 text-sm mb-4 line-clamp-3 flex-grow">
+                            Panel interactivo desarrollado en Power BI para monitorizar métricas de seguridad de la información. Integra conceptos de la ISO 27001 para visualizar vulnerabilidades.
+                          </p>
+                          <div className="flex flex-wrap gap-2 mb-6" aria-label="Tecnologías usadas">
+                            <span className="px-2 py-1 text-xs font-medium bg-yellow-600/30 text-yellow-500 rounded">Power BI</span>
+                            <span className="px-2 py-1 text-xs font-medium bg-purple-900/30 text-purple-300 rounded">DAX</span>
+                            <span className="px-2 py-1 text-xs font-medium bg-slate-800 text-slate-200 rounded">Análisis Visual</span>
+                          </div>
+                          <div className="pt-4 border-t border-slate-800 mt-auto">
+                            <a href="https://github.com/paula-martinez/cybersec-dashboard" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors group/link">
+                              <GithubIcon className="w-4 h-4 mr-2 transition-transform group-hover/link:-translate-y-1" />
+                              Ver repositorio en GitHub
+                            </a>
+                          </div>
+                        </div>
+                      </article>
+
+                      {/* Proyecto 3 */}
+                      <article className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-colors group flex flex-col">
+                        <GitHubScrollMockup repoName="network-audit-tool" accentColor="bg-emerald-500" />
+                        <div className="p-6 relative z-10 bg-slate-900 flex-grow flex flex-col">
+                          <h3 className="text-xl font-bold text-white mb-2">Auditoría y Gestión de Redes</h3>
+                          <p className="text-slate-300 text-sm mb-4 line-clamp-3 flex-grow">
+                            Aplicación de conocimientos de CCNA y Ethical Hacking para el levantamiento de topologías de red, mantenimiento de infraestructura y documentación en MS Excel.
+                          </p>
+                          <div className="flex flex-wrap gap-2 mb-6" aria-label="Tecnologías usadas">
+                            <span className="px-2 py-1 text-xs font-medium bg-emerald-900/30 text-emerald-300 rounded">CCNA</span>
+                            <span className="px-2 py-1 text-xs font-medium bg-green-900/30 text-green-300 rounded">Ciberseguridad</span>
+                            <span className="px-2 py-1 text-xs font-medium bg-slate-800 text-slate-200 rounded">Excel Avanzado</span>
+                          </div>
+                          <div className="pt-4 border-t border-slate-800 mt-auto">
+                            <a href="https://github.com/paula-martinez/network-audit-tool" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-slate-400 hover:text-emerald-400 transition-colors group/link">
+                              <GithubIcon className="w-4 h-4 mr-2 transition-transform group-hover/link:-translate-y-1" />
+                              Ver repositorio en GitHub
+                            </a>
+                          </div>
+                        </div>
+                      </article>
+
+                    </div>
                   </div>
-                </div>
-              </article>
+                </section>
 
-            </div>
-          </div>
-        </section>
+                {/* EXPERIENCIA Y EDUCACIÓN */}
+                <section id="experiencia" className="py-24 bg-slate-900">
+                  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                      
+                      {/* Experiencia */}
+                      <div>
+                        <h2 className="text-3xl font-bold text-white mb-8 flex items-center tracking-tight">
+                          <BriefcaseIcon className="mr-3 text-blue-500" aria-hidden="true" /> Experiencia Profesional
+                        </h2>
+                        <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+                          
+                          {[
+                            { title: 'Asistente de Soporte', org: 'Antillean Construction Corp.', date: 'Jun 25 - Sep 25', icon: BriefcaseIcon, desc: ['Gestión y levantamiento de datos civiles.', 'Organización de bases de datos tabulares en Excel.'] },
+                            { title: 'Soporte Técnico / Analista Jr', org: 'Cámara de Diputados', date: 'Ago 24 - Jun 25', icon: TerminalIcon, desc: ['Extracción y análisis de bases de datos (SQL SSMS, Python).', 'Resolución de incidentes y mantenimiento de redes.'] },
+                            { title: 'Auxiliar Administrativo', org: 'Senado de la República', date: 'Jun 24 - Ago 24', icon: BriefcaseIcon, desc: ['Documentación y archivado cronológico de datos.', 'Gestión integral de correspondencia.'] }
+                          ].map((job, index) => (
+                            <article key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-slate-800 text-blue-400 group-hover:border-blue-500 group-hover:text-blue-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10 transition-colors" aria-hidden="true">
+                                <job.icon className="w-4 h-4" />
+                              </div>
+                              <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-5 rounded-xl border border-slate-700 bg-slate-800/50 shadow-md">
+                                <div className="flex flex-wrap items-center justify-between space-x-2 mb-1">
+                                  <h3 className="font-bold text-white">{job.org}</h3>
+                                  <time className="font-mono text-xs text-blue-400">{job.date}</time>
+                                </div>
+                                <div className="text-sm font-medium text-slate-200 mb-2">{job.title}</div>
+                                <ul className="text-sm text-slate-300 space-y-1 list-disc list-inside">
+                                  {job.desc.map((d, i) => <li key={i}>{d}</li>)}
+                                </ul>
+                              </div>
+                            </article>
+                          ))}
 
-        {/* EXPERIENCIA Y EDUCACIÓN */}
-        <section id="experiencia" className="py-24 bg-slate-900">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              
-              {/* Experiencia */}
-              <div>
-                <h2 className="text-3xl font-bold text-white mb-8 flex items-center tracking-tight">
-                  <Briefcase className="mr-3 text-blue-500" aria-hidden="true" /> Experiencia Profesional
-                </h2>
-                <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+                        </div>
+                      </div>
+
+                      {/* Educación */}
+                      <div>
+                        <h2 className="text-3xl font-bold text-white mb-8 flex items-center tracking-tight">
+                          <GraduationCapIcon className="mr-3 text-blue-500" aria-hidden="true" /> Educación
+                        </h2>
+                        <div className="space-y-6">
+                          <article className="p-6 rounded-xl border border-blue-500/30 bg-blue-900/10 shadow-lg">
+                            <div className="flex flex-wrap justify-between items-start mb-2">
+                              <h3 className="font-bold text-lg text-white">Ingeniería en Ciencia de Datos</h3>
+                              <span className="text-xs font-mono text-blue-400 bg-blue-900/30 px-2 py-1 rounded mt-1 sm:mt-0">Actualidad</span>
+                            </div>
+                            <p className="text-slate-300 text-sm">Universidad Domínico Americano (UNICDA)</p>
+                          </article>
+
+                          <article className="p-6 rounded-xl border border-slate-700 bg-slate-800/50 shadow-lg">
+                            <div className="flex flex-wrap justify-between items-start mb-2">
+                              <h3 className="font-bold text-lg text-white">Técnico Profesional: Desarrollo Informático</h3>
+                              <span className="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-1 rounded mt-1 sm:mt-0">2022 - 2025</span>
+                            </div>
+                            <p className="text-slate-300 text-sm">Desarrollo y Gestión de Aplicaciones Informáticas. Dominio de C#, Python, SQL y Web.</p>
+                          </article>
+
+                          <h3 className="text-xl font-bold text-white mt-8 mb-4 border-b border-slate-700 pb-2">Certificaciones Clave</h3>
+                          <ul className="space-y-3" aria-label="Lista de certificaciones">
+                            {[
+                              { name: 'Manejo de Power BI e IA', org: 'Daxus (2025)' },
+                              { name: 'Ciberseguridad y Ethical Hacking', org: 'Hacker mentor (2025)' },
+                              { name: 'Seguridad de la información ISO 27001', org: 'Seguridad Cero (2025)' },
+                              { name: 'Redes y configuración inicial (CCNA)', org: '2025' }
+                            ].map((cert, idx) => (
+                              <li key={idx} className="flex items-start">
+                                <div className="mt-1 mr-3 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" aria-hidden="true"></div>
+                                <div>
+                                  <p className="text-slate-200 text-sm font-medium">{cert.name}</p>
+                                  <p className="text-slate-400 text-xs">{cert.org}</p>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </section>
+
+                {/* HABILIDADES */}
+                <section id="habilidades" className="py-24 bg-slate-800 border-t border-slate-800">
+                  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 className="text-3xl font-bold text-white mb-12 text-center tracking-tight">Stack Tecnológico</h2>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                      {/* Data & Analytics */}
+                      <article className="bg-slate-900 rounded-2xl p-8 border border-slate-700 text-center">
+                        <TerminalIcon className="w-10 h-10 text-blue-500 mx-auto mb-4" aria-hidden="true" />
+                        <h3 className="text-lg font-bold text-white mb-6">Datos & Análisis</h3>
+                        <div className="flex flex-wrap justify-center gap-2" aria-label="Habilidades en Datos y Análisis">
+                          {['SQL Server (SSMS)', 'Python', 'Power BI', 'Excel Avanzado', 'Queries'].map(skill => (
+                            <span key={skill} className="px-3 py-1.5 bg-blue-900/20 border border-blue-500/20 text-blue-200 rounded-lg text-sm">{skill}</span>
+                          ))}
+                        </div>
+                      </article>
+
+                      {/* Development */}
+                      <article className="bg-slate-900 rounded-2xl p-8 border border-slate-700 text-center">
+                        <TerminalIcon className="w-10 h-10 text-cyan-500 mx-auto mb-4" aria-hidden="true" />
+                        <h3 className="text-lg font-bold text-white mb-6">Desarrollo</h3>
+                        <div className="flex flex-wrap justify-center gap-2" aria-label="Habilidades en Desarrollo">
+                          {['C#', 'C++', 'Python', 'HTML/CSS', 'JavaScript', 'PHP'].map(skill => (
+                            <span key={skill} className="px-3 py-1.5 bg-cyan-900/20 border border-cyan-500/20 text-cyan-200 rounded-lg text-sm">{skill}</span>
+                          ))}
+                        </div>
+                      </article>
+
+                      {/* Infra & Security */}
+                      <article className="bg-slate-900 rounded-2xl p-8 border border-slate-700 text-center">
+                        <TerminalIcon className="w-10 h-10 text-emerald-500 mx-auto mb-4" aria-hidden="true" />
+                        <h3 className="text-lg font-bold text-white mb-6">Infraestructura & Seguridad</h3>
+                        <div className="flex flex-wrap justify-center gap-2" aria-label="Habilidades en Infraestructura y Seguridad">
+                          {['Redes Básicas', 'CCNA', 'Ciberseguridad', 'ISO 27001', 'Hardware', 'Office 365'].map(skill => (
+                            <span key={skill} className="px-3 py-1.5 bg-emerald-900/20 border border-emerald-500/20 text-emerald-200 rounded-lg text-sm">{skill}</span>
+                          ))}
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </section>
+
+              </main>
+
+              {/* FOOTER & CONTACTO */}
+              <footer id="contacto" className="bg-slate-950 border-t border-slate-800 py-12">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                      <h2 className="text-2xl font-bold text-white mb-4 tracking-tight">¿Hablamos de datos?</h2>
+                      <p className="text-slate-300 mb-6 max-w-md">
+                        Estoy abierta a oportunidades como Analista de Datos Jr., Pasante de Ingeniería de Datos o roles en soporte TI.
+                      </p>
+                      <address className="space-y-3 text-slate-200 not-italic">
+                        <a href="mailto:martinezpaula0728@gmail.com" className="flex items-center hover:text-blue-400 transition-colors focus:outline-none focus:underline" aria-label="Enviar correo electrónico a Paula Martinez">
+                          <MailIcon className="w-5 h-5 mr-3" aria-hidden="true" /> martinezpaula0728@gmail.com
+                        </a>
+                        <a href="tel:8299903179" className="flex items-center hover:text-blue-400 transition-colors focus:outline-none focus:underline" aria-label="Llamar al teléfono de Paula Martinez">
+                          <PhoneIcon className="w-5 h-5 mr-3" aria-hidden="true" /> (829)-990-3179
+                        </a>
+                        <div className="flex items-center text-slate-300" aria-label="Ubicación: Santo Domingo, Distrito Nacional">
+                          <MapPinIcon className="w-5 h-5 mr-3" aria-hidden="true" /> Santo Domingo, Distrito Nacional
+                        </div>
+                      </address>
+                    </div>
+                    
+                    <div className="flex justify-start md:justify-end space-x-6">
+                      <a href="#" aria-label="Perfil de LinkedIn" className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:border-blue-500 hover:text-blue-400 text-slate-300 transition-all focus:ring-2 focus:ring-blue-500">
+                        IN
+                      </a>
+                      <a href="#" aria-label="Perfil de GitHub" className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:border-white hover:text-white text-slate-300 transition-all focus:ring-2 focus:ring-white">
+                        GH
+                      </a>
+                    </div>
+                  </div>
                   
-                  {[
-                    { title: 'Asistente de Soporte', org: 'Antillean Construction Corp.', date: 'Jun 25 - Sep 25', icon: Briefcase, desc: ['Gestión y levantamiento de datos civiles.', 'Organización de bases de datos tabulares en Excel.'] },
-                    { title: 'Soporte Técnico / Analista Jr', org: 'Cámara de Diputados', date: 'Ago 24 - Jun 25', icon: Terminal, desc: ['Extracción y análisis de bases de datos (SQL SSMS, Python).', 'Resolución de incidentes y mantenimiento de redes.'] },
-                    { title: 'Auxiliar Administrativo', org: 'Senado de la República', date: 'Jun 24 - Ago 24', icon: Briefcase, desc: ['Documentación y archivado cronológico de datos.', 'Gestión integral de correspondencia.'] }
-                  ].map((job, index) => (
-                    <article key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-700 bg-slate-800 text-blue-400 group-hover:border-blue-500 group-hover:text-blue-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10 transition-colors" aria-hidden="true">
-                        <job.icon className="w-4 h-4" />
-                      </div>
-                      <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-5 rounded-xl border border-slate-700 bg-slate-800/50 shadow-md">
-                        <div className="flex flex-wrap items-center justify-between space-x-2 mb-1">
-                          <h3 className="font-bold text-white">{job.org}</h3>
-                          <time className="font-mono text-xs text-blue-400">{job.date}</time>
-                        </div>
-                        <div className="text-sm font-medium text-slate-200 mb-2">{job.title}</div>
-                        <ul className="text-sm text-slate-300 space-y-1 list-disc list-inside">
-                          {job.desc.map((d, i) => <li key={i}>{d}</li>)}
-                        </ul>
-                      </div>
-                    </article>
-                  ))}
-
+                  <div className="mt-12 pt-8 border-t border-slate-800/50 text-center text-sm text-slate-400">
+                    © {new Date().getFullYear()} Paula Martinez. Data Science Portfolio.
+                  </div>
                 </div>
-              </div>
-
-              {/* Educación */}
-              <div>
-                <h2 className="text-3xl font-bold text-white mb-8 flex items-center tracking-tight">
-                  <GraduationCap className="mr-3 text-blue-500" aria-hidden="true" /> Educación
-                </h2>
-                <div className="space-y-6">
-                  <article className="p-6 rounded-xl border border-blue-500/30 bg-blue-900/10 shadow-lg">
-                    <div className="flex flex-wrap justify-between items-start mb-2">
-                      <h3 className="font-bold text-lg text-white">Ingeniería en Ciencia de Datos</h3>
-                      <span className="text-xs font-mono text-blue-400 bg-blue-900/30 px-2 py-1 rounded mt-1 sm:mt-0">Actualidad</span>
-                    </div>
-                    <p className="text-slate-300 text-sm">Universidad Domínico Americano (UNICDA)</p>
-                  </article>
-
-                  <article className="p-6 rounded-xl border border-slate-700 bg-slate-800/50 shadow-lg">
-                    <div className="flex flex-wrap justify-between items-start mb-2">
-                      <h3 className="font-bold text-lg text-white">Técnico Profesional: Desarrollo Informático</h3>
-                      <span className="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-1 rounded mt-1 sm:mt-0">2022 - 2025</span>
-                    </div>
-                    <p className="text-slate-300 text-sm">Desarrollo y Gestión de Aplicaciones Informáticas. Dominio de C#, Python, SQL y Web.</p>
-                  </article>
-
-                  <h3 className="text-xl font-bold text-white mt-8 mb-4 border-b border-slate-700 pb-2">Certificaciones Clave</h3>
-                  <ul className="space-y-3" aria-label="Lista de certificaciones">
-                    {[
-                      { name: 'Manejo de Power BI e IA', org: 'Daxus (2025)' },
-                      { name: 'Ciberseguridad y Ethical Hacking', org: 'Hacker mentor (2025)' },
-                      { name: 'Seguridad de la información ISO 27001', org: 'Seguridad Cero (2025)' },
-                      { name: 'Redes y configuración inicial (CCNA)', org: '2025' }
-                    ].map((cert, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <div className="mt-1 mr-3 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" aria-hidden="true"></div>
-                        <div>
-                          <p className="text-slate-200 text-sm font-medium">{cert.name}</p>
-                          <p className="text-slate-400 text-xs">{cert.org}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              </footer>
 
             </div>
-          </div>
-        </section>
+          );
+        };
 
-        {/* HABILIDADES */}
-        <section id="habilidades" className="py-24 bg-slate-800 border-t border-slate-800">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-white mb-12 text-center tracking-tight">Stack Tecnológico</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Data & Analytics */}
-              <article className="bg-slate-900 rounded-2xl p-8 border border-slate-700 text-center">
-                <Terminal className="w-10 h-10 text-blue-500 mx-auto mb-4" aria-hidden="true" />
-                <h3 className="text-lg font-bold text-white mb-6">Datos & Análisis</h3>
-                <div className="flex flex-wrap justify-center gap-2" aria-label="Habilidades en Datos y Análisis">
-                  {['SQL Server (SSMS)', 'Python', 'Power BI', 'Excel Avanzado', 'Queries'].map(skill => (
-                    <span key={skill} className="px-3 py-1.5 bg-blue-900/20 border border-blue-500/20 text-blue-200 rounded-lg text-sm">{skill}</span>
-                  ))}
-                </div>
-              </article>
-
-              {/* Development */}
-              <article className="bg-slate-900 rounded-2xl p-8 border border-slate-700 text-center">
-                <Terminal className="w-10 h-10 text-cyan-500 mx-auto mb-4" aria-hidden="true" />
-                <h3 className="text-lg font-bold text-white mb-6">Desarrollo</h3>
-                <div className="flex flex-wrap justify-center gap-2" aria-label="Habilidades en Desarrollo">
-                  {['C#', 'C++', 'Python', 'HTML/CSS', 'JavaScript', 'PHP'].map(skill => (
-                    <span key={skill} className="px-3 py-1.5 bg-cyan-900/20 border border-cyan-500/20 text-cyan-200 rounded-lg text-sm">{skill}</span>
-                  ))}
-                </div>
-              </article>
-
-              {/* Infra & Security */}
-              <article className="bg-slate-900 rounded-2xl p-8 border border-slate-700 text-center">
-                <Terminal className="w-10 h-10 text-emerald-500 mx-auto mb-4" aria-hidden="true" />
-                <h3 className="text-lg font-bold text-white mb-6">Infraestructura & Seguridad</h3>
-                <div className="flex flex-wrap justify-center gap-2" aria-label="Habilidades en Infraestructura y Seguridad">
-                  {['Redes Básicas', 'CCNA', 'Ciberseguridad', 'ISO 27001', 'Hardware', 'Office 365'].map(skill => (
-                    <span key={skill} className="px-3 py-1.5 bg-emerald-900/20 border border-emerald-500/20 text-emerald-200 rounded-lg text-sm">{skill}</span>
-                  ))}
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-      </main>
-
-      {/* FOOTER & CONTACTO */}
-      <footer id="contacto" className="bg-slate-950 border-t border-slate-800 py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-4 tracking-tight">¿Hablamos de datos?</h2>
-              <p className="text-slate-300 mb-6 max-w-md">
-                Estoy abierta a oportunidades como Analista de Datos Jr., Pasante de Ingeniería de Datos o roles en soporte TI.
-              </p>
-              <address className="space-y-3 text-slate-200 not-italic">
-                <a href="mailto:martinezpaula0728@gmail.com" className="flex items-center hover:text-blue-400 transition-colors focus:outline-none focus:underline" aria-label="Enviar correo electrónico a Paula Martinez">
-                  <Mail className="w-5 h-5 mr-3" aria-hidden="true" /> martinezpaula0728@gmail.com
-                </a>
-                <a href="tel:8299903179" className="flex items-center hover:text-blue-400 transition-colors focus:outline-none focus:underline" aria-label="Llamar al teléfono de Paula Martinez">
-                  <Phone className="w-5 h-5 mr-3" aria-hidden="true" /> (829)-990-3179
-                </a>
-                <div className="flex items-center text-slate-300" aria-label="Ubicación: Santo Domingo, Distrito Nacional">
-                  <MapPin className="w-5 h-5 mr-3" aria-hidden="true" /> Santo Domingo, Distrito Nacional
-                </div>
-              </address>
-            </div>
-            
-            <div className="flex justify-start md:justify-end space-x-6">
-              <a href="#" aria-label="Perfil de LinkedIn" className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:border-blue-500 hover:text-blue-400 text-slate-300 transition-all focus:ring-2 focus:ring-blue-500">
-                IN
-              </a>
-              <a href="#" aria-label="Perfil de GitHub" className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:border-white hover:text-white text-slate-300 transition-all focus:ring-2 focus:ring-white">
-                GH
-              </a>
-            </div>
-          </div>
-          
-          <div className="mt-12 pt-8 border-t border-slate-800/50 text-center text-sm text-slate-400">
-            © {new Date().getFullYear()} Paula Martinez. Data Science Portfolio.
-          </div>
-        </div>
-      </footer>
-
-    </div>
-  );
-};
-
-export default App;
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
