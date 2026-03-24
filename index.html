@@ -8,6 +8,7 @@
     <meta name="keywords" content="Paula Martínez, Data Science, Data Engineer, SQL Server, Python, Power BI, Ciberseguridad, ISO 27001, CCNA, República Dominicana, Analista de Datos">
     <meta name="author" content="Paula Martínez">
     <meta name="robots" content="index, follow">
+
     <!-- Open Graph -->
     <meta property="og:title" content="Paula Martínez | Data Science Engineer">
     <meta property="og:description" content="Especialista en Datos e Infraestructura | SQL • Python • Power BI • Ciberseguridad">
@@ -22,8 +23,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syncopate:wght@700&display=swap');
        
         body { font-family: 'Inter', sans-serif; }
-        .font-syncopate { font-family: 'Syncopate', sans-serif; }
-        
         .hero-bg {
             background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
         }
@@ -81,13 +80,13 @@
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
+
     <!-- NAVEGACIÓN -->
     <nav class="fixed top-0 w-full z-50 bg-slate-950/90 backdrop-blur-lg border-b border-slate-800">
         <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
             <div class="text-2xl font-black tracking-tighter">
                 pm<span class="text-blue-500">.</span>
             </div>
-            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="#inicio" class="nav-link active text-slate-300 hover:text-white">Inicio</a>
                 <a href="#sobre-mi" class="nav-link text-slate-300 hover:text-white">Sobre mí</a>
@@ -95,17 +94,15 @@
                 <a href="#experiencia" class="nav-link text-slate-300 hover:text-white">Experiencia</a>
                 <a href="#habilidades" class="nav-link text-slate-300 hover:text-white">Habilidades</a>
             </div>
-            <!-- Mobile Hamburger -->
             <button id="mobile-menu-btn" class="md:hidden text-2xl">☰</button>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 py-4">
             <div class="flex flex-col px-6 gap-4 text-sm font-medium">
-                <a href="#inicio" class="mobile-link py-2">Inicio</a>
-                <a href="#sobre-mi" class="mobile-link py-2">Sobre mí</a>
-                <a href="#proyectos" class="mobile-link py-2">Proyectos</a>
-                <a href="#experiencia" class="mobile-link py-2">Experiencia</a>
-                <a href="#habilidades" class="mobile-link py-2">Habilidades</a>
+                <a href="#inicio" class="py-2">Inicio</a>
+                <a href="#sobre-mi" class="py-2">Sobre mí</a>
+                <a href="#proyectos" class="py-2">Proyectos</a>
+                <a href="#experiencia" class="py-2">Experiencia</a>
+                <a href="#habilidades" class="py-2">Habilidades</a>
             </div>
         </div>
     </nav>
@@ -132,18 +129,14 @@
                         Estudiante avanzada de Ingeniería en Ciencia de Datos con fuerte base en infraestructura, SQL, Python y ciberseguridad.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#proyectos"
-                           class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-xl font-semibold transition-all inline-flex items-center gap-3">
-                            Ver Proyectos
-                            <span class="text-xl">→</span>
+                        <a href="#proyectos" class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-xl font-semibold transition-all inline-flex items-center gap-3">
+                            Ver Proyectos <span class="text-xl">→</span>
                         </a>
-                        <a href="#contacto"
-                           class="border border-slate-700 hover:border-slate-500 px-8 py-4 rounded-xl font-semibold transition-all">
+                        <a href="#contacto" class="border border-slate-700 hover:border-slate-500 px-8 py-4 rounded-xl font-semibold transition-all">
                             Contactarme
                         </a>
                     </div>
                 </div>
-                <!-- Terminal visual -->
                 <div class="hidden md:block bg-slate-900 border border-slate-700 rounded-2xl p-6 font-mono text-sm shadow-2xl">
                     <div class="flex gap-2 mb-4">
                         <div class="w-3 h-3 rounded-full bg-red-500"></div>
@@ -183,7 +176,7 @@
                 </h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                    <!-- Proyecto 1 -->
+                    <!-- Proyecto 1: ETL Nómina -->
                     <div class="group bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden hover:border-blue-500 transition-all">
                         <div class="h-52 bg-[#0d1117] relative overflow-hidden">
                             <div class="github-mock absolute inset-0 flex flex-col">
@@ -193,11 +186,12 @@
                             </div>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-2xl font-semibold mb-3">ETL Nómina / Payroll</h3>
-                            <p class="text-slate-400 mb-6">Proceso completo de Extracción, Transformación y Carga (ETL) para gestión de nómina usando Python y SQL Server.</p>
+                            <h3 class="text-2xl font-semibold mb-3">ETL Nómina Pública</h3>
+                            <p class="text-slate-400 mb-6">Proceso ETL completo aplicado a la nómina pública de empleados de la Cámara de Diputados de la República Dominicana (junio 2025). Extracción desde Excel, transformación y carga en SQL Server con Python (pandas + SQLAlchemy), limpieza de datos y creación de vistas analíticas para distribución salarial y estructura organizacional.</p>
                             <div class="flex flex-wrap gap-2">
                                 <span class="text-xs px-3 py-1 bg-blue-950 text-blue-400 rounded-full">SQL Server</span>
                                 <span class="text-xs px-3 py-1 bg-yellow-950 text-yellow-400 rounded-full">Python</span>
+                                <span class="text-xs px-3 py-1 bg-emerald-950 text-emerald-400 rounded-full">Pandas</span>
                                 <span class="text-xs px-3 py-1 bg-emerald-950 text-emerald-400 rounded-full">ETL</span>
                             </div>
                             <a href="https://github.com/paulamrtz/ETL-Nomina-ETL-Payroll" target="_blank"
@@ -207,7 +201,7 @@
                         </div>
                     </div>
 
-                    <!-- Proyecto 2 -->
+                    <!-- Proyecto 2: Cyberbullying Dashboard -->
                     <div class="group bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden hover:border-cyan-500 transition-all">
                         <div class="h-52 bg-[#0d1117] relative overflow-hidden">
                             <div class="github-mock absolute inset-0 flex flex-col">
@@ -217,11 +211,12 @@
                             </div>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-2xl font-semibold mb-3">Dashboard de Cyberbullying</h3>
-                            <p class="text-slate-400 mb-6">Panel interactivo en Power BI para el análisis y visualización de casos de ciberacoso en redes sociales.</p>
+                            <h3 class="text-2xl font-semibold mb-3">Dashboard de Ciberbullying</h3>
+                            <p class="text-slate-400 mb-6">Panel interactivo en Power BI que analiza patrones de ciberacoso en 300 estudiantes adolescentes. Incluye KPIs, visualizaciones de víctimas por género y raza, relación entre horas de pantalla y riesgo, tipos de bullying y factores asociados (consumo de alcohol y sustancias).</p>
                             <div class="flex flex-wrap gap-2">
                                 <span class="text-xs px-3 py-1 bg-yellow-950 text-yellow-400 rounded-full">Power BI</span>
                                 <span class="text-xs px-3 py-1 bg-purple-950 text-purple-400 rounded-full">DAX</span>
+                                <span class="text-xs px-3 py-1 bg-pink-950 text-pink-400 rounded-full">Power Query</span>
                             </div>
                             <a href="https://github.com/paulamrtz/Cyberbullying-Dashboard" target="_blank"
                                class="mt-8 inline-flex items-center gap-2 text-sm text-slate-400 hover:text-cyan-400">
@@ -230,7 +225,7 @@
                         </div>
                     </div>
 
-                    <!-- Proyecto 3 -->
+                    <!-- Proyecto 3: Auditoría de Red -->
                     <div class="group bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden hover:border-emerald-500 transition-all">
                         <div class="h-52 bg-[#0d1117] relative overflow-hidden">
                             <div class="github-mock absolute inset-0 flex flex-col">
@@ -240,11 +235,12 @@
                             </div>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-2xl font-semibold mb-3">Auditoría de Redes</h3>
-                            <p class="text-slate-400 mb-6">Levantamiento de topologías, documentación técnica y auditoría de infraestructura de redes con enfoque en CCNA y ciberseguridad.</p>
+                            <h3 class="text-2xl font-semibold mb-3">Auditoría de Seguridad de Redes</h3>
+                            <p class="text-slate-400 mb-6">Reporte completo de auditoría de seguridad en Excel que documenta 100 dispositivos y 50 vulnerabilidades. Clasificación de riesgos según ISO 27001, métricas automáticas y dashboard visual para gestión de riesgos en infraestructura de red.</p>
                             <div class="flex flex-wrap gap-2">
-                                <span class="text-xs px-3 py-1 bg-emerald-950 text-emerald-400 rounded-full">CCNA</span>
-                                <span class="text-xs px-3 py-1 bg-green-950 text-green-400 rounded-full">Ciberseguridad</span>
+                                <span class="text-xs px-3 py-1 bg-emerald-950 text-emerald-400 rounded-full">ISO 27001</span>
+                                <span class="text-xs px-3 py-1 bg-green-950 text-green-400 rounded-full">Excel Avanzado</span>
+                                <span class="text-xs px-3 py-1 bg-slate-700 text-slate-300 rounded-full">Auditoría</span>
                             </div>
                             <a href="https://github.com/paulamrtz/Auditoria-de-red" target="_blank"
                                class="mt-8 inline-flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-400">
@@ -260,8 +256,6 @@
         <!-- EXPERIENCIA Y EDUCACIÓN -->
         <section id="experiencia" class="py-24 bg-slate-900">
             <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
-               
-                <!-- Experiencia Profesional -->
                 <div>
                     <h2 class="text-4xl font-bold mb-10 flex items-center gap-4">
                         <span class="text-blue-500">❯</span> Experiencia Profesional
@@ -280,7 +274,6 @@
                     </div>
                 </div>
 
-                <!-- Educación y Certificaciones -->
                 <div>
                     <h2 class="text-4xl font-bold mb-10 flex items-center gap-4">
                         <span class="text-blue-500">❯</span> Educación & Certificaciones
@@ -289,14 +282,11 @@
                         <h3 class="font-semibold text-xl">Ingeniería en Ciencia de Datos</h3>
                         <p class="text-slate-400">Universidad Domínico Americano (UNICDA) — Actualidad</p>
                     </div>
-                    
                     <h3 class="font-semibold text-lg mb-4">Certificaciones</h3>
                     <ul class="space-y-4">
                         <li class="flex gap-4">
                             <span class="text-blue-500">✔</span>
-                            <div>
-                                <p>Manejo de Power BI e IA – Daxus (2025)</p>
-                            </div>
+                            <div><p>Manejo de Power BI e IA – Daxus (2025)</p></div>
                         </li>
                     </ul>
                 </div>
@@ -308,7 +298,6 @@
             <div class="max-w-6xl mx-auto px-6">
                 <h2 class="text-4xl font-bold text-center mb-16">Stack Tecnológico</h2>
                 <div class="grid md:grid-cols-3 gap-8">
-                    
                     <div class="bg-slate-900 p-8 rounded-3xl border border-slate-700">
                         <h3 class="text-blue-400 text-xl mb-6">Datos & Análisis</h3>
                         <div class="flex flex-wrap gap-3">
@@ -316,26 +305,26 @@
                             <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Python</span>
                             <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Power BI</span>
                             <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">DAX</span>
+                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Pandas</span>
                             <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">ETL</span>
                         </div>
                     </div>
-
                     <div class="bg-slate-900 p-8 rounded-3xl border border-slate-700">
-                        <h3 class="text-emerald-400 text-xl mb-6">Infraestructura & Redes</h3>
+                        <h3 class="text-emerald-400 text-xl mb-6">Infraestructura & Seguridad</h3>
                         <div class="flex flex-wrap gap-3">
                             <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">CCNA</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Ciberseguridad</span>
                             <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">ISO 27001</span>
                             <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Auditoría de Redes</span>
+                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Ciberseguridad</span>
                         </div>
                     </div>
-
                     <div class="bg-slate-900 p-8 rounded-3xl border border-slate-700">
                         <h3 class="text-purple-400 text-xl mb-6">Herramientas</h3>
                         <div class="flex flex-wrap gap-3">
                             <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Git & GitHub</span>
                             <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Excel Avanzado</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Visual Studio Code</span>
+                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">SQLAlchemy</span>
+                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Power Query</span>
                         </div>
                     </div>
                 </div>
@@ -343,39 +332,26 @@
         </section>
     </main>
 
-    <!-- FOOTER / CONTACTO -->
+    <!-- FOOTER -->
     <footer id="contacto" class="bg-slate-950 border-t border-slate-800 py-16">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12">
                 <div>
                     <h2 class="text-3xl font-bold mb-4">¿Hablamos de datos?</h2>
                     <p class="text-slate-400 max-w-md">Estoy abierta a oportunidades como Analista de Datos Jr., Pasante o roles en soporte TI.</p>
-                   
                     <div class="mt-10 space-y-4">
-                        <a href="mailto:martinezpaula0728@gmail.com" class="flex items-center gap-3 hover:text-blue-400 transition-colors">
-                            ✉️ martinezpaula0728@gmail.com
-                        </a>
-                        <a href="tel:8299903179" class="flex items-center gap-3 hover:text-blue-400 transition-colors">
-                            📞 (829) 990-3179
-                        </a>
-                        <div class="flex items-center gap-3 text-slate-400">
-                            📍 Santo Domingo, República Dominicana
-                        </div>
+                        <a href="mailto:martinezpaula0728@gmail.com" class="flex items-center gap-3 hover:text-blue-400 transition-colors">✉️ martinezpaula0728@gmail.com</a>
+                        <a href="tel:8299903179" class="flex items-center gap-3 hover:text-blue-400 transition-colors">📞 (829) 990-3179</a>
+                        <div class="flex items-center gap-3 text-slate-400">📍 Santo Domingo, República Dominicana</div>
                     </div>
                 </div>
-                
                 <div class="flex gap-6 md:justify-end">
                     <a href="https://www.linkedin.com/in/paula1martinez/" target="_blank"
-                       class="w-12 h-12 flex items-center justify-center border border-slate-700 rounded-2xl hover:border-blue-500 hover:text-blue-400 transition-all text-lg">
-                        in
-                    </a>
+                       class="w-12 h-12 flex items-center justify-center border border-slate-700 rounded-2xl hover:border-blue-500 hover:text-blue-400 text-2xl">in</a>
                     <a href="https://github.com/paulamrtz" target="_blank"
-                       class="w-12 h-12 flex items-center justify-center border border-slate-700 rounded-2xl hover:border-white hover:text-white transition-all text-lg">
-                        GitHub
-                    </a>
+                       class="w-12 h-12 flex items-center justify-center border border-slate-700 rounded-2xl hover:border-white hover:text-white text-xl font-medium">GitHub</a>
                 </div>
             </div>
-            
             <div class="text-center text-slate-500 text-sm mt-16">
                 © 2026 Paula Martínez • Data Science Portfolio
             </div>
@@ -383,7 +359,6 @@
     </footer>
 
     <script>
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -392,7 +367,6 @@
             });
         });
 
-        // Mobile menu
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         btn.addEventListener('click', () => {
