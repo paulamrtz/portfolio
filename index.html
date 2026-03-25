@@ -7,25 +7,13 @@
     <meta name="description" content="Portafolio profesional de Paula Martínez - Data Science Engineer especializada en SQL, Python, Power BI y Ciberseguridad. Estudiante de Ingeniería en Ciencia de Datos en UNICDA, República Dominicana.">
     <meta name="keywords" content="Paula Martínez, Data Science, Data Engineer, SQL Server, Python, Power BI, Ciberseguridad, ISO 27001, CCNA, República Dominicana, Analista de Datos">
     <meta name="author" content="Paula Martínez">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Paula Martínez | Data Science Engineer">
-    <meta property="og:description" content="Especialista en Datos e Infraestructura | SQL • Python • Power BI • Ciberseguridad">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tudominio.com">
-    <meta property="og:image" content="https://tudominio.com/og-image.jpg">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Syncopate:wght@700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syncopate:wght@700&display=swap');
-       
         body { font-family: 'Inter', sans-serif; }
-        .hero-bg {
-            background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
-        }
+        .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
         
         .yurei-shattered-container {
             position: relative;
@@ -53,30 +41,24 @@
         .yurei-shattered-container:hover .slice-3 { transform: translate(-6px, 7px) rotate(2deg); }
         .yurei-shattered-container:hover .slice-4 { transform: translate(7px, -4px); }
 
-        .github-mock {
-            animation: github-scroll 25s linear infinite;
-        }
+        .github-mock { animation: github-scroll 25s linear infinite; }
         @keyframes github-scroll {
             0% { transform: translateY(0); }
             100% { transform: translateY(-50%); }
         }
         
-        .nav-link {
-            position: relative;
-        }
+        .nav-link { position: relative; }
         .nav-link:after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
+            width: 0; height: 2px;
+            bottom: -2px; left: 0;
             background-color: #38bdf8;
             transition: width 0.3s ease;
         }
-        .nav-link:hover:after, .nav-link.active:after {
-            width: 100%;
-        }
+        .nav-link:hover:after, .nav-link.active:after { width: 100%; }
+
+        .code-font { font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
@@ -108,13 +90,14 @@
     </nav>
 
     <main class="pt-20">
+
         <!-- HERO -->
         <section id="inicio" class="min-h-screen hero-bg flex items-center">
-            <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center py-20">
                 <div>
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm mb-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-sm mb-8">
                         <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                        Data Science Engineer
+                        Becada por Excelencia Académica
                     </div>
                     <h1 class="text-5xl md:text-7xl font-bold leading-none mb-6">
                         <span class="yurei-shattered-container block">
@@ -124,9 +107,11 @@
                             <span class="yurei-slice slice-4">paula martínez</span>
                         </span>
                     </h1>
-                    <p class="text-2xl text-slate-400 mb-8">Transformo datos en decisiones estratégicas</p>
-                    <p class="max-w-lg text-lg text-slate-300 mb-10">
-                        Estudiante avanzada de Ingeniería en Ciencia de Datos con fuerte base en infraestructura, SQL, Python y ciberseguridad.
+                    <p class="text-2xl text-slate-400 mb-6">Data Science Engineering Student</p>
+                    <p class="max-w-lg text-lg text-slate-300 mb-10 leading-relaxed">
+                        Especializada en extraer, procesar y transformar datos en valor estratégico. 
+                        Combino mi base técnica en infraestructura con <strong class="text-white">Python</strong> y <strong class="text-white">SQL</strong> para resolver 
+                        problemas complejos y optimizar la toma de decisiones.
                     </p>
                     <div class="flex flex-wrap gap-4">
                         <a href="#proyectos" class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-xl font-semibold transition-all inline-flex items-center gap-3">
@@ -137,15 +122,21 @@
                         </a>
                     </div>
                 </div>
-                <div class="hidden md:block bg-slate-900 border border-slate-700 rounded-2xl p-6 font-mono text-sm shadow-2xl">
-                    <div class="flex gap-2 mb-4">
-                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <div class="hidden md:block relative">
+                    <div class="w-72 h-72 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-full opacity-20 blur-3xl absolute -top-10 -left-10"></div>
+                    <div class="relative bg-slate-900 border border-slate-700 rounded-2xl p-6 shadow-2xl code-font text-sm text-blue-300">
+                        <div class="flex gap-2 mb-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <p>~ <span class="text-emerald-400">SELECT</span> * <span class="text-emerald-400">FROM</span> talent</p>
+                        <p class="pl-4"><span class="text-emerald-400">WHERE</span> skills <span class="text-emerald-400">IN</span> ('SQL', 'Python', 'Power BI')</p>
+                        <p class="pl-4"><span class="text-emerald-400">AND</span> drive = <span class="text-orange-300">'100%'</span>;</p>
+                        <br>
+                        <p class="text-slate-500">/* Ejecutando consulta... */</p>
+                        <p class="text-white mt-2">1 fila devuelta: Paula Martínez.</p>
                     </div>
-                    <p class="text-emerald-400">~ SELECT * FROM talent WHERE skills LIKE '%SQL%' AND drive = '100%';</p>
-                    <p class="text-white mt-4">1 fila encontrada:</p>
-                    <p class="text-blue-400 font-semibold">→ Paula Martínez</p>
                 </div>
             </div>
         </section>
@@ -158,11 +149,10 @@
                 </h2>
                 <div class="bg-slate-800/60 border border-slate-700 rounded-3xl p-10 text-lg leading-relaxed text-slate-300">
                     <p class="mb-6">
-                        Tengo 18 años y soy estudiante avanzada de <strong class="text-white">Ingeniería en Ciencia de Datos</strong> en la Universidad Domínico Americano (UNICDA).
+                        Tengo 18 años y soy estudiante de <strong class="text-white">Ingeniería en Ciencia de Datos</strong> en la Universidad Domínico Americano (UNICDA), donde fui galardonada con una <strong class="text-white">beca del 100% por excelencia académica</strong>.
                     </p>
                     <p>
-                        Mi camino comenzó en soporte técnico e infraestructura de redes, lo que me dio una visión profunda del flujo de datos.
-                        Hoy me enfoco en extracción y análisis de datos con <strong class="text-white">SQL</strong>, automatización con <strong class="text-white">Python</strong>, visualización en <strong class="text-white">Power BI</strong> y buenas prácticas de ciberseguridad.
+                        Mi trayectoria comenzó en el soporte técnico y la infraestructura de redes, lo que me dio una comprensión profunda de cómo fluye la información. Actualmente enfoco mi carrera en la <strong class="text-white">extracción de datos (SQL)</strong>, la <strong class="text-white">automatización (Python)</strong> y el <strong class="text-white">análisis visual (Power BI)</strong>. Me destaco por mi rápida curva de aprendizaje, mi capacidad para trabajar bajo presión y mi interés en aplicar prácticas de ciberseguridad a las bases de datos institucionales.
                     </p>
                 </div>
             </div>
@@ -176,76 +166,100 @@
                 </h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                    <!-- Proyecto 1: ETL Nómina -->
-                    <div class="group bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden hover:border-blue-500 transition-all">
-                        <div class="h-52 bg-[#0d1117] relative overflow-hidden">
+                    <!-- Proyecto 1 -->
+                    <div class="group bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden hover:border-blue-500 transition-all flex flex-col">
+                        <div class="h-48 bg-[#0d1117] relative overflow-hidden">
                             <div class="github-mock absolute inset-0 flex flex-col">
                                 <div class="flex-1 bg-gradient-to-br from-blue-900/30 to-transparent p-6">
-                                    <div class="text-xs text-blue-400 font-mono">etl-nomina</div>
+                                    <div class="text-xs text-blue-400 code-font mb-3">paulamrtz / ETL-Nomina-ETL-Payroll</div>
+                                    <div class="space-y-2">
+                                        <div class="h-2 w-full bg-slate-700/50 rounded"></div>
+                                        <div class="h-2 w-4/5 bg-slate-700/50 rounded"></div>
+                                        <div class="h-2 w-3/5 bg-slate-700/50 rounded"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-8">
-                            <h3 class="text-2xl font-semibold mb-3">ETL Nómina Pública</h3>
-                            <p class="text-slate-400 mb-6">Proceso ETL completo aplicado a la nómina pública de empleados de la Cámara de Diputados de la República Dominicana (junio 2025). Extracción desde Excel, transformación y carga en SQL Server con Python (pandas + SQLAlchemy), limpieza de datos y creación de vistas analíticas para distribución salarial y estructura organizacional.</p>
-                            <div class="flex flex-wrap gap-2">
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold mb-3">ETL & Extracción de Datos Gubernamentales</h3>
+                            <p class="text-slate-400 mb-6 text-sm leading-relaxed flex-grow">Proceso ETL completo aplicado a la nómina pública de la Cámara de Diputados (821 empleados). Extracción con Python y pandas, carga a SQL Server y análisis con consultas avanzadas, vistas y distribución salarial.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
                                 <span class="text-xs px-3 py-1 bg-blue-950 text-blue-400 rounded-full">SQL Server</span>
                                 <span class="text-xs px-3 py-1 bg-yellow-950 text-yellow-400 rounded-full">Python</span>
                                 <span class="text-xs px-3 py-1 bg-emerald-950 text-emerald-400 rounded-full">Pandas</span>
-                                <span class="text-xs px-3 py-1 bg-emerald-950 text-emerald-400 rounded-full">ETL</span>
+                                <span class="text-xs px-3 py-1 bg-slate-700 text-slate-300 rounded-full">ETL</span>
                             </div>
-                            <a href="https://github.com/paulamrtz/ETL-Nomina-ETL-Payroll" target="_blank"
-                               class="mt-8 inline-flex items-center gap-2 text-sm text-slate-400 hover:text-blue-400">
-                                Ver en GitHub →
-                            </a>
+                            <div class="pt-4 border-t border-slate-800">
+                                <a href="https://github.com/paulamrtz/ETL-Nomina-ETL-Payroll" target="_blank"
+                                   class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-blue-400 transition-colors">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    Ver en GitHub →
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Proyecto 2: Cyberbullying Dashboard -->
-                    <div class="group bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden hover:border-cyan-500 transition-all">
-                        <div class="h-52 bg-[#0d1117] relative overflow-hidden">
+                    <!-- Proyecto 2 -->
+                    <div class="group bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden hover:border-cyan-500 transition-all flex flex-col">
+                        <div class="h-48 bg-[#0d1117] relative overflow-hidden">
                             <div class="github-mock absolute inset-0 flex flex-col">
                                 <div class="flex-1 bg-gradient-to-br from-cyan-900/30 to-transparent p-6">
-                                    <div class="text-xs text-cyan-400 font-mono">cyberbullying-dashboard</div>
+                                    <div class="text-xs text-cyan-400 code-font mb-3">paulamrtz / Cyberbullying-Dashboard</div>
+                                    <div class="space-y-2">
+                                        <div class="h-2 w-full bg-slate-700/50 rounded"></div>
+                                        <div class="h-2 w-4/5 bg-slate-700/50 rounded"></div>
+                                        <div class="h-2 w-3/5 bg-slate-700/50 rounded"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-8">
-                            <h3 class="text-2xl font-semibold mb-3">Dashboard de Ciberbullying</h3>
-                            <p class="text-slate-400 mb-6">Panel interactivo en Power BI que analiza patrones de ciberacoso en 300 estudiantes adolescentes. Incluye KPIs, visualizaciones de víctimas por género y raza, relación entre horas de pantalla y riesgo, tipos de bullying y factores asociados (consumo de alcohol y sustancias).</p>
-                            <div class="flex flex-wrap gap-2">
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold mb-3">Dashboard de Análisis de Ciberbullying</h3>
+                            <p class="text-slate-400 mb-6 text-sm leading-relaxed flex-grow">Panel interactivo en Power BI que analiza patrones de ciberbullying en 300 estudiantes adolescentes. Incluye KPIs, víctimas por género y raza, relación entre horas de pantalla y riesgo, y conductas asociadas como consumo de sustancias.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
                                 <span class="text-xs px-3 py-1 bg-yellow-950 text-yellow-400 rounded-full">Power BI</span>
                                 <span class="text-xs px-3 py-1 bg-purple-950 text-purple-400 rounded-full">DAX</span>
                                 <span class="text-xs px-3 py-1 bg-pink-950 text-pink-400 rounded-full">Power Query</span>
                             </div>
-                            <a href="https://github.com/paulamrtz/Cyberbullying-Dashboard" target="_blank"
-                               class="mt-8 inline-flex items-center gap-2 text-sm text-slate-400 hover:text-cyan-400">
-                                Ver en GitHub →
-                            </a>
+                            <div class="pt-4 border-t border-slate-800">
+                                <a href="https://github.com/paulamrtz/Cyberbullying-Dashboard" target="_blank"
+                                   class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-cyan-400 transition-colors">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    Ver en GitHub →
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Proyecto 3: Auditoría de Red -->
-                    <div class="group bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden hover:border-emerald-500 transition-all">
-                        <div class="h-52 bg-[#0d1117] relative overflow-hidden">
+                    <!-- Proyecto 3 -->
+                    <div class="group bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden hover:border-emerald-500 transition-all flex flex-col">
+                        <div class="h-48 bg-[#0d1117] relative overflow-hidden">
                             <div class="github-mock absolute inset-0 flex flex-col">
                                 <div class="flex-1 bg-gradient-to-br from-emerald-900/30 to-transparent p-6">
-                                    <div class="text-xs text-emerald-400 font-mono">auditoria-de-red</div>
+                                    <div class="text-xs text-emerald-400 code-font mb-3">paulamrtz / Auditoria-de-red</div>
+                                    <div class="space-y-2">
+                                        <div class="h-2 w-full bg-slate-700/50 rounded"></div>
+                                        <div class="h-2 w-4/5 bg-slate-700/50 rounded"></div>
+                                        <div class="h-2 w-3/5 bg-slate-700/50 rounded"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="p-8">
-                            <h3 class="text-2xl font-semibold mb-3">Auditoría de Seguridad de Redes</h3>
-                            <p class="text-slate-400 mb-6">Reporte completo de auditoría de seguridad en Excel que documenta 100 dispositivos y 50 vulnerabilidades. Clasificación de riesgos según ISO 27001, métricas automáticas y dashboard visual para gestión de riesgos en infraestructura de red.</p>
-                            <div class="flex flex-wrap gap-2">
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-xl font-semibold mb-3">Auditoría y Gestión de Seguridad de Redes</h3>
+                            <p class="text-slate-400 mb-6 text-sm leading-relaxed flex-grow">Reporte de auditoría en Excel con inventario de 100 dispositivos y 50 vulnerabilidades clasificadas por nivel de riesgo. Aplica marco ISO 27001 con fórmulas automáticas y dashboard de seguimiento visual.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
                                 <span class="text-xs px-3 py-1 bg-emerald-950 text-emerald-400 rounded-full">ISO 27001</span>
-                                <span class="text-xs px-3 py-1 bg-green-950 text-green-400 rounded-full">Excel Avanzado</span>
-                                <span class="text-xs px-3 py-1 bg-slate-700 text-slate-300 rounded-full">Auditoría</span>
+                                <span class="text-xs px-3 py-1 bg-green-950 text-green-400 rounded-full">Ciberseguridad</span>
+                                <span class="text-xs px-3 py-1 bg-slate-700 text-slate-300 rounded-full">Excel Avanzado</span>
                             </div>
-                            <a href="https://github.com/paulamrtz/Auditoria-de-red" target="_blank"
-                               class="mt-8 inline-flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-400">
-                                Ver en GitHub →
-                            </a>
+                            <div class="pt-4 border-t border-slate-800">
+                                <a href="https://github.com/paulamrtz/Auditoria-de-red" target="_blank"
+                                   class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                                    Ver en GitHub →
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -256,40 +270,106 @@
         <!-- EXPERIENCIA Y EDUCACIÓN -->
         <section id="experiencia" class="py-24 bg-slate-900">
             <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+
+                <!-- Experiencia -->
                 <div>
                     <h2 class="text-4xl font-bold mb-10 flex items-center gap-4">
                         <span class="text-blue-500">❯</span> Experiencia Profesional
                     </h2>
-                    <div class="space-y-12">
+                    <div class="space-y-10">
+
                         <div class="border-l-2 border-blue-500 pl-8 relative">
                             <div class="absolute -left-2 top-1 w-4 h-4 bg-slate-900 border-2 border-blue-500 rounded-full"></div>
-                            <div class="text-sm text-blue-400">Jun 2025 – Sep 2025</div>
+                            <div class="text-sm text-blue-400 code-font mb-1">Jun 2025 – Sep 2025</div>
                             <h3 class="text-xl font-semibold">Asistente de Soporte</h3>
-                            <p class="text-slate-400">Antillean Construction Corp.</p>
-                            <ul class="mt-3 text-slate-300 list-disc pl-5 space-y-1">
-                                <li>Gestión y levantamiento de datos civiles</li>
-                                <li>Organización de bases de datos en Excel</li>
+                            <p class="text-slate-400 mb-3">Antillean Construction Corp.</p>
+                            <ul class="text-slate-300 list-disc pl-5 space-y-1 text-sm">
+                                <li>Gestión y levantamiento de datos civiles.</li>
+                                <li>Organización de bases de datos tabulares en Excel.</li>
                             </ul>
                         </div>
+
+                        <div class="border-l-2 border-blue-500 pl-8 relative">
+                            <div class="absolute -left-2 top-1 w-4 h-4 bg-slate-900 border-2 border-blue-500 rounded-full"></div>
+                            <div class="text-sm text-blue-400 code-font mb-1">Ago 2024 – Jun 2025</div>
+                            <h3 class="text-xl font-semibold">Soporte Técnico / Analista Jr.</h3>
+                            <p class="text-slate-400 mb-3">Cámara de Diputados</p>
+                            <ul class="text-slate-300 list-disc pl-5 space-y-1 text-sm">
+                                <li>Extracción y análisis de bases de datos (SQL SSMS, Python).</li>
+                                <li>Resolución de incidentes y mantenimiento de redes.</li>
+                            </ul>
+                        </div>
+
+                        <div class="border-l-2 border-blue-500 pl-8 relative">
+                            <div class="absolute -left-2 top-1 w-4 h-4 bg-slate-900 border-2 border-blue-500 rounded-full"></div>
+                            <div class="text-sm text-blue-400 code-font mb-1">Jun 2024 – Ago 2024</div>
+                            <h3 class="text-xl font-semibold">Auxiliar Administrativo</h3>
+                            <p class="text-slate-400 mb-3">Senado de la República</p>
+                            <ul class="text-slate-300 list-disc pl-5 space-y-1 text-sm">
+                                <li>Documentación y archivado cronológico de datos.</li>
+                                <li>Gestión integral de correspondencia.</li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
 
+                <!-- Educación -->
                 <div>
                     <h2 class="text-4xl font-bold mb-10 flex items-center gap-4">
-                        <span class="text-blue-500">❯</span> Educación & Certificaciones
+                        <span class="text-blue-500">❯</span> Educación
                     </h2>
-                    <div class="bg-blue-950/30 border border-blue-500/30 rounded-3xl p-8 mb-8">
-                        <h3 class="font-semibold text-xl">Ingeniería en Ciencia de Datos</h3>
-                        <p class="text-slate-400">Universidad Domínico Americano (UNICDA) — Actualidad</p>
+
+                    <div class="bg-blue-950/30 border border-blue-500/30 rounded-3xl p-8 mb-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-semibold text-xl text-white">Ingeniería en Ciencia de Datos</h3>
+                            <span class="text-xs code-font text-blue-400 bg-blue-900/30 px-2 py-1 rounded">Actualidad</span>
+                        </div>
+                        <p class="text-slate-400">Universidad Domínico Americano (UNICDA)</p>
+                        <p class="text-blue-300 text-sm italic mt-2">★ Becada en honor a la excelencia (UNICDA Excellence 100%)</p>
                     </div>
-                    <h3 class="font-semibold text-lg mb-4">Certificaciones</h3>
+
+                    <div class="bg-slate-800/50 border border-slate-700 rounded-3xl p-8 mb-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-semibold text-lg text-white">Técnico Profesional: Desarrollo Informático</h3>
+                            <span class="text-xs code-font text-slate-400 bg-slate-800 px-2 py-1 rounded">2022 – 2025</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">Desarrollo y Gestión de Aplicaciones Informáticas. Dominio de C#, Python, SQL y Web.</p>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-4 border-b border-slate-700 pb-2">Certificaciones Clave</h3>
                     <ul class="space-y-4">
-                        <li class="flex gap-4">
-                            <span class="text-blue-500">✔</span>
-                            <div><p>Manejo de Power BI e IA – Daxus (2025)</p></div>
+                        <li class="flex gap-4 items-start">
+                            <span class="text-blue-500 mt-0.5">✔</span>
+                            <div>
+                                <p class="text-slate-200 font-medium text-sm">Manejo de Power BI e IA</p>
+                                <p class="text-slate-500 text-xs">Daxus (2025)</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="text-blue-500 mt-0.5">✔</span>
+                            <div>
+                                <p class="text-slate-200 font-medium text-sm">Ciberseguridad y Ethical Hacking</p>
+                                <p class="text-slate-500 text-xs">Hacker Mentor (2025)</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="text-blue-500 mt-0.5">✔</span>
+                            <div>
+                                <p class="text-slate-200 font-medium text-sm">Seguridad de la Información ISO 27001</p>
+                                <p class="text-slate-500 text-xs">Seguridad Cero (2025)</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4 items-start">
+                            <span class="text-blue-500 mt-0.5">✔</span>
+                            <div>
+                                <p class="text-slate-200 font-medium text-sm">Redes y Configuración Inicial (CCNA)</p>
+                                <p class="text-slate-500 text-xs">2025</p>
+                            </div>
                         </li>
                     </ul>
                 </div>
+
             </div>
         </section>
 
@@ -298,58 +378,77 @@
             <div class="max-w-6xl mx-auto px-6">
                 <h2 class="text-4xl font-bold text-center mb-16">Stack Tecnológico</h2>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-slate-900 p-8 rounded-3xl border border-slate-700">
-                        <h3 class="text-blue-400 text-xl mb-6">Datos & Análisis</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">SQL Server</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Python</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Power BI</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">DAX</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Pandas</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">ETL</span>
+                    <div class="bg-slate-900 p-8 rounded-3xl border border-slate-700 text-center">
+                        <div class="text-blue-400 text-3xl mb-4">🗄️</div>
+                        <h3 class="text-blue-400 text-xl font-bold mb-6">Datos & Análisis</h3>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <span class="bg-blue-900/20 border border-blue-500/20 text-blue-300 px-4 py-2 rounded-xl text-sm">SQL Server (SSMS)</span>
+                            <span class="bg-blue-900/20 border border-blue-500/20 text-blue-300 px-4 py-2 rounded-xl text-sm">Python</span>
+                            <span class="bg-blue-900/20 border border-blue-500/20 text-blue-300 px-4 py-2 rounded-xl text-sm">Power BI</span>
+                            <span class="bg-blue-900/20 border border-blue-500/20 text-blue-300 px-4 py-2 rounded-xl text-sm">Excel Avanzado</span>
+                            <span class="bg-blue-900/20 border border-blue-500/20 text-blue-300 px-4 py-2 rounded-xl text-sm">DAX</span>
+                            <span class="bg-blue-900/20 border border-blue-500/20 text-blue-300 px-4 py-2 rounded-xl text-sm">Pandas</span>
                         </div>
                     </div>
-                    <div class="bg-slate-900 p-8 rounded-3xl border border-slate-700">
-                        <h3 class="text-emerald-400 text-xl mb-6">Infraestructura & Seguridad</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">CCNA</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">ISO 27001</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Auditoría de Redes</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Ciberseguridad</span>
+                    <div class="bg-slate-900 p-8 rounded-3xl border border-slate-700 text-center">
+                        <div class="text-cyan-400 text-3xl mb-4">💻</div>
+                        <h3 class="text-cyan-400 text-xl font-bold mb-6">Desarrollo</h3>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <span class="bg-cyan-900/20 border border-cyan-500/20 text-cyan-300 px-4 py-2 rounded-xl text-sm">C#</span>
+                            <span class="bg-cyan-900/20 border border-cyan-500/20 text-cyan-300 px-4 py-2 rounded-xl text-sm">C++</span>
+                            <span class="bg-cyan-900/20 border border-cyan-500/20 text-cyan-300 px-4 py-2 rounded-xl text-sm">Python</span>
+                            <span class="bg-cyan-900/20 border border-cyan-500/20 text-cyan-300 px-4 py-2 rounded-xl text-sm">HTML/CSS</span>
+                            <span class="bg-cyan-900/20 border border-cyan-500/20 text-cyan-300 px-4 py-2 rounded-xl text-sm">JavaScript</span>
+                            <span class="bg-cyan-900/20 border border-cyan-500/20 text-cyan-300 px-4 py-2 rounded-xl text-sm">PHP</span>
                         </div>
                     </div>
-                    <div class="bg-slate-900 p-8 rounded-3xl border border-slate-700">
-                        <h3 class="text-purple-400 text-xl mb-6">Herramientas</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Git & GitHub</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Excel Avanzado</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">SQLAlchemy</span>
-                            <span class="bg-slate-800 px-5 py-2 rounded-2xl text-sm">Power Query</span>
+                    <div class="bg-slate-900 p-8 rounded-3xl border border-slate-700 text-center">
+                        <div class="text-emerald-400 text-3xl mb-4">🔐</div>
+                        <h3 class="text-emerald-400 text-xl font-bold mb-6">Infraestructura & Seguridad</h3>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <span class="bg-emerald-900/20 border border-emerald-500/20 text-emerald-300 px-4 py-2 rounded-xl text-sm">Redes Básicas</span>
+                            <span class="bg-emerald-900/20 border border-emerald-500/20 text-emerald-300 px-4 py-2 rounded-xl text-sm">CCNA</span>
+                            <span class="bg-emerald-900/20 border border-emerald-500/20 text-emerald-300 px-4 py-2 rounded-xl text-sm">Ciberseguridad</span>
+                            <span class="bg-emerald-900/20 border border-emerald-500/20 text-emerald-300 px-4 py-2 rounded-xl text-sm">ISO 27001</span>
+                            <span class="bg-emerald-900/20 border border-emerald-500/20 text-emerald-300 px-4 py-2 rounded-xl text-sm">Hardware</span>
+                            <span class="bg-emerald-900/20 border border-emerald-500/20 text-emerald-300 px-4 py-2 rounded-xl text-sm">Office 365</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
-    <!-- FOOTER -->
+    <!-- FOOTER / CONTACTO -->
     <footer id="contacto" class="bg-slate-950 border-t border-slate-800 py-16">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="text-3xl font-bold mb-4">¿Hablamos de datos?</h2>
-                    <p class="text-slate-400 max-w-md">Estoy abierta a oportunidades como Analista de Datos Jr., Pasante o roles en soporte TI.</p>
-                    <div class="mt-10 space-y-4">
-                        <a href="mailto:martinezpaula0728@gmail.com" class="flex items-center gap-3 hover:text-blue-400 transition-colors">✉️ martinezpaula0728@gmail.com</a>
-                        <a href="tel:8299903179" class="flex items-center gap-3 hover:text-blue-400 transition-colors">📞 (829) 990-3179</a>
-                        <div class="flex items-center gap-3 text-slate-400">📍 Santo Domingo, República Dominicana</div>
+                    <p class="text-slate-400 max-w-md mb-8">Estoy abierta a oportunidades como Analista de Datos Jr., Pasante de Ingeniería de Datos o roles en soporte TI.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 text-slate-300">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            martinezpaula0728&#64;gmail&#46;com
+                        </div>
+                        <a href="tel:8299903179" class="flex items-center gap-3 text-slate-300 hover:text-blue-400 transition-colors">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 9.8 19.79 19.79 0 0 1 0 1.17 2 2 0 0 1 2 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.09 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            (829) 990-3179
+                        </a>
+                        <div class="flex items-center gap-3 text-slate-400">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Santo Domingo, Distrito Nacional
+                        </div>
                     </div>
                 </div>
                 <div class="flex gap-6 md:justify-end">
                     <a href="https://www.linkedin.com/in/paula1martinez/" target="_blank"
-                       class="w-12 h-12 flex items-center justify-center border border-slate-700 rounded-2xl hover:border-blue-500 hover:text-blue-400 text-2xl">in</a>
+                       class="w-14 h-14 flex items-center justify-center border border-slate-700 rounded-2xl hover:border-blue-500 hover:text-blue-400 transition-all font-bold">IN</a>
                     <a href="https://github.com/paulamrtz" target="_blank"
-                       class="w-12 h-12 flex items-center justify-center border border-slate-700 rounded-2xl hover:border-white hover:text-white text-xl font-medium">GitHub</a>
+                       class="w-14 h-14 flex items-center justify-center border border-slate-700 rounded-2xl hover:border-white hover:text-white transition-all">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
                 </div>
             </div>
             <div class="text-center text-slate-500 text-sm mt-16">
