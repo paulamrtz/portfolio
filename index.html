@@ -482,11 +482,12 @@
                 const { ip } = await ipRes.json();
 
                 const _a = 'patGgBtQDvGxE0woC';
+                const _b = '.1697a83ff239a40275d37a451cecf2e5e9847f614d835e3a6f045777a4492577';
 
 await fetch('https://api.airtable.com/v0/appA8SdlIJw6tsyv8/Visits', {
     method: 'POST',
     headers: {
-        'Authorization': 'Bearer ' + _a,
+        'Authorization': 'Bearer ' + _a + _b,
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
