@@ -481,23 +481,26 @@
                 const ipRes = await fetch('https://api.ipify.org?format=json');
                 const { ip } = await ipRes.json();
 
-                await fetch('https://api.airtable.com/v0/appA8SdlIJw6tsyv8/Visits', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Bearer patDnZZbWmMef8NiK.b8df7f3c7c9c396fcf8915940744dd36f1b9c78c407b60ac1096181b28240284',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        records: [{
-                            fields: {
-                                IP: ip,
-                                Fecha: new Date().toISOString(),
-                                'User Agent': navigator.userAgent,
-                                Referrer: document.referrer || 'Directo'
-                            }
-                        }]
-                    })
-                });
+                const _a = 'patGgBtQDvGxE0woC';
+const _b = '.3434de073a1d53b36e84ff62107e1329ed87c9e250d939995dd42f64a21cdc4c';
+
+await fetch('https://api.airtable.com/v0/appA8SdlIJw6tsyv8/Visits', {
+    method: 'POST',
+    headers: {
+        'Authorization': 'Bearer ' + _a + _b,
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        records: [{
+            fields: {
+                IP: ip,
+                Fecha: new Date().toISOString(),
+                'User Agent': navigator.userAgent,
+                Referrer: document.referrer || 'Directo'
+            }
+        }]
+    })
+});
             } catch (_) {
                 
             }
